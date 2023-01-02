@@ -11,27 +11,9 @@ import Register from "./auth/Register";
 import UserList from "./admin/showallusers";
 import CreateUser from "./admin/createuser";
 import EditUser from "./admin/edituser";
-// import ShowCategoryList from "./admin/ShowCategoryAdmin";
-// import ShowCourseList from "./admin/showCourseAdmin";
-// import EditCourseList from "./admin/editCourseAdmin";
-// import CreateCategoryAdmin from "./admin/createCategoryAdmin";
-// import EditCategoryList from "./admin/editCategoryAdmin";
-// import EnrollmentList from "./admin/showEnrollAdmin";
-// import Dashboard from "./admin/Dashboard";
-// import CreateEnrollAdmin from "./admin/createEnrollAdmin";
 import Forgot from "./auth/Forgot";
 import HomeTwo from "./HomeTwo";
 import About from "./pages/About";
-// import Services from "./service/Services";
-// import ServicesForInstructor from "./service/ServicesByInstructor";
-// import Servicesforstudent from "./service/ServiceforStudent"
-// import ServiceDetailsLeftSidebar from "./service/ServiceDetailsLeftSidebar";
-// import Projects from "./project/Projects";
-// import ProjectDetails from "./project/ProjectDetails";
-// import BlogLeftSidebar from "./blog/BlogLeftSidebar";
-// import AddCourse from "./blog/AddCourse";
-// import AddLecture from "./blog/Addlecture";
-// import BlogDetailsLeftSidebar from "./blog/BlogDetailsLeftSidebar";
 import Contact from "./pages/Contact";
 import PageNotFound from "./pages/404";
 import NoMAtch from "./pages/404";
@@ -41,7 +23,6 @@ import * as serviceWorker from "./serviceWorker";
 import PrivateRoute from "./components/common/PrivateRoute";
 //actions
 import { setCurrentUser, logoutUser } from "./actions/authActions";
-// import { clearCurrentProfile } from "./actions/profileActions";
 
 //profile stuff
 
@@ -57,7 +38,7 @@ import Post from './components/post/Post';
 import Profiles from "./components/profiles/Profiles";
 // import EditPost from './components/post/EditPost';
 
-//check for token  to avoid state destroy on reload
+//check for token to avoid state destroy on reload
 if (localStorage.jwtToken) {
   //set auth token header auth
   setAuthToken(localStorage.jwtToken);
@@ -101,52 +82,6 @@ class Root extends Component {
               path={`${process.env.PUBLIC_URL}/about-us`}
               component={About}
             />
-            {/* <PrivateRoute
-              exact
-              path={`${process.env.PUBLIC_URL}/servicesforstudent/:id`}
-              component={Servicesforstudent}
-            />
-             <PrivateRoute
-              exact
-              path={`${process.env.PUBLIC_URL}/services/:id`}
-              component={ServicesForInstructor}
-            />
-            <PrivateRoute
-              exact
-              path={`${process.env.PUBLIC_URL}/services`}
-              component={Services}
-            />
-            <PrivateRoute
-              exact
-              path={`${process.env.PUBLIC_URL}/service-details-left-sidebar`}
-              component={ServiceDetailsLeftSidebar}
-            />
-            <PrivateRoute
-              exact
-              path={`${process.env.PUBLIC_URL}/projects`}
-              component={Projects}
-            />
-            
-            <PrivateRoute
-              exact
-              path={`${process.env.PUBLIC_URL}/project-details`}
-              component={ProjectDetails}
-            />
-            <PrivateRoute
-              exact
-              path={`${process.env.PUBLIC_URL}/blog-left-sidebar`}
-              component={BlogLeftSidebar}
-            />
-              <PrivateRoute
-              exact
-              path={`${process.env.PUBLIC_URL}/addcourse/:id`}
-              component={AddCourse}
-            />
-            <PrivateRoute
-              exact
-              path={`${process.env.PUBLIC_URL}/blog-details-left-sidebar/:id`}
-              component={BlogDetailsLeftSidebar}
-            /> */}
             <PrivateRoute
               exact
               path={`${process.env.PUBLIC_URL}/profiles`}
@@ -192,61 +127,11 @@ class Root extends Component {
               path={`${process.env.PUBLIC_URL}/post/:id`}
               component={Post}
             />
-            {/* <PrivateRoute
-              exact
-              path={`${process.env.PUBLIC_URL}/post/edit/:id`}
-              component={EditPost}
-            /> */}
-            {/* <PrivateRoute
-              exact
-              path={`${process.env.PUBLIC_URL}/dashboard`}
-              component={Dashboard}
-            /> */}
-            {/* <Route
-              exact
-              path={`${process.env.PUBLIC_URL}/createEnrollAdmin`}
-              component={CreateEnrollAdmin}
-            /> */}
-             {/* <Route
-              exact
-              path={`${process.env.PUBLIC_URL}/EnrollmentList`}
-              component={EnrollmentList}
-            />
-            <Route
-              exact
-              path={`${process.env.PUBLIC_URL}/ShowCourseList`}
-              component={ShowCourseList}
-            />
-            <Route
-              exact
-              path={`${process.env.PUBLIC_URL}/ShowCategoryList`}
-              component={ShowCategoryList}
-            />
-            <Route
-              exact
-              path={`${process.env.PUBLIC_URL}/ShowCourseList/edit/:id`}
-              component={EditCourseList}
-            />
-            <Route
-              exact
-              path={`${process.env.PUBLIC_URL}/ShowCategoryList/edit/:id`}
-              component={EditCategoryList}
-            />
-            <Route
-              exact
-              path={`${process.env.PUBLIC_URL}/CreateCategoryAdmin`}
-              component={CreateCategoryAdmin}
-            /> */}
             <Route
               exact
               path={`${process.env.PUBLIC_URL}/forgot-password`}
               component={Forgot}
             />
-            {/* <Route
-              exact
-              path={`${process.env.PUBLIC_URL}/add-lecture/:id`}
-              component={AddLecture}
-            /> */}
             <PrivateRoute
               exact
               path={`${process.env.PUBLIC_URL}/404`}
