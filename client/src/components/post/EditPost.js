@@ -25,13 +25,16 @@ class EditPost extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    const { user } = this.props.auth;
+    // const { user } = this.props.auth;
+    console.log("au", this.props)
+    const { user } = this.props.auth.users;
+
 
     const updatedPost = {
       text: this.state.text,
-      first_name: user.first_name,
-      last_name: user.last_name,
-      avatar: user.avatar
+      first_name: this.props.auth.users.first_name,
+      // last_name: user.last_name,
+      // avatar: user.avatar
     };
 
     this.props.updatePost(updatedPost);

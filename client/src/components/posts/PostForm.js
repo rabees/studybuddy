@@ -25,13 +25,14 @@ class PostForm extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    const { user } = this.props.auth;
+    const { user } = this.props.auth.users;
+    console.log("user",this.props.auth.users)
 
     const newPost = {
       text: this.state.text,
-      firstname: user.firstname,
-      lastname: user.lastname,
-      avatar: user.avatar
+      first_name: this.props.auth.users.first_name,
+      // last_name: user.last_name?user.last_name:"",
+      // avatar: user.avatar?user.avatar:""
     };
 
     this.props.addPost(newPost);

@@ -62,7 +62,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
 // @route   PATCH api/posts/edit/:id
 // @desc    Edit post
 // @access  Private
-router.put('/edit/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.put('/posts/edit/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
     Profile.findOne({ user: req.user.id })
     .then(profile => {
         Post.findByIdAndUpdate(req.params.id)

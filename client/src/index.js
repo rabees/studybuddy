@@ -36,7 +36,7 @@ import FinalProfiles from "./components/FinalProfiles";
 import Posts from './components/posts/Posts';
 import Post from './components/post/Post';
 import Profiles from "./components/profiles/Profiles";
-// import EditPost from './components/post/EditPost';
+import EditPost from "./components/post/EditPost";
 
 //check for token to avoid state destroy on reload
 if (localStorage.jwtToken) {
@@ -126,6 +126,11 @@ class Root extends Component {
               exact
               path={`${process.env.PUBLIC_URL}/post/:id`}
               component={Post}
+            />
+            <PrivateRoute
+              exact
+              path={`${process.env.PUBLIC_URL}/post/edit/:id`}
+              component={EditPost}
             />
             <Route
               exact

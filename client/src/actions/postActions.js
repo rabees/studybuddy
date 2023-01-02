@@ -70,8 +70,9 @@ export const getPost = id => dispatch => {
 
 // Edit Post
 export const updatePost = (id, data) => dispatch => {
+  console.log("id",id ,"data",data)
   axios
-    .patch(`/api/posts/${id}`)
+    .put(`/api/posts/edit/${id}`)
     .then(res =>
       dispatch({
         type: EDIT_POST,

@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
 import { Link } from 'react-router-dom';
-import { deletePost, addLike, removeLike } from '../../actions/postActions';
+import { deletePost, updatePost, addLike, removeLike } from '../../actions/postActions';
 
 class PostItem extends Component {
-  // onUpdateClick(id, data) {
-  //   this.props.updatePost(id, data);
-  // }
+  onUpdateClick(id, data) {
+    console.log("id",id)
+    console.log("data",data)
+    this.props.updatePost(id, data);
+  }
 
   onDeleteClick(id) {
     this.props.deletePost(id);
@@ -25,7 +27,7 @@ class PostItem extends Component {
   findUserLike(likes) {
     const { auth } = this.props;
     //check if user is in the like array
-    if (likes.filter(like => like.user === auth.user.id).length > 0) {
+    if (likes&&likes.length>0&&likes.filter(like => like.user === auth.users.id).length > 0) {
       return true;
     } else {
       return false;
@@ -34,6 +36,8 @@ class PostItem extends Component {
 
   render() {
     const { post, auth, showActions } = this.props;
+    console.log("post",post)
+    console.log("auth",auth)
 
     return (
       <div className="card card-body mb-3">
@@ -41,11 +45,11 @@ class PostItem extends Component {
           <div className="col-md-2">
               <img
                 className="rounded-circle d-none d-md-block"
-                src={post.avatar}
+                src={post?post.avatar:""}
                 alt=""
               />
             <br />
-            <p className="text-center">{post.first_name} {post.last_name}</p>
+            <p className="text-center">{post.first_name} {post.last_name?post.last_name:""}</p>
           </div>
           <div className="col-md-10">
             <p className="lead">{post.text}</p>
@@ -73,7 +77,7 @@ class PostItem extends Component {
                 <Link to={`/post/${post._id}`} className="btn btn-info mr-1">
                   Comments
                 </Link>
-                {post.user === auth.user.id ? (
+                {post.user === auth.users.id ? (
                   <button
                     onClick={this.onDeleteClick.bind(this, post._id)}
                     type="button"
@@ -82,7 +86,10 @@ class PostItem extends Component {
                     <i className="fas fa-times" />
                   </button>
                 ) : null}
-                {/* {post.user === auth.user.id ? (
+
+
+
+                {post.user === auth.users.id ? (
                   <Link
                     to={`/post/edit/${post._id}`}
                     onClick={this.onUpdateClick.bind(this, post._id)}
@@ -90,8 +97,8 @@ class PostItem extends Component {
                   >
                   <i className='fas fa-edit'/>
                   Edit Post
-                  </Link> */}
-                {/* ) : null} */}
+                  </Link>
+                ) : null}
               </span>
             ) : null}
           </div>
@@ -106,7 +113,7 @@ PostItem.defaultProps = {
 };
 
 PostItem.propTypes = {
-  // updatePost: PropTypes.func.isRequired,
+  updatePost: PropTypes.func.isRequired,
   deletePost: PropTypes.func.isRequired,
   addLike: PropTypes.func.isRequired,
   removeLike: PropTypes.func.isRequired,
@@ -118,6 +125,6 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { deletePost, addLike, removeLike })(
+export default connect(mapStateToProps, { deletePost,updatePost, addLike, removeLike })(
   PostItem
 );
