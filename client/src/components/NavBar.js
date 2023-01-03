@@ -60,37 +60,11 @@ class NavBar extends Component {
                             </a>
 
                             <ul id="main-nav-ul">
-                              {/* <li>
-                                <a href={`${process.env.PUBLIC_URL}/dashboard`}>
-                                  DASHBOARD
-                                </a>
-                              </li> */}
                               <li>
                                 <a href={`${process.env.PUBLIC_URL}/allusers`}>
                                   USERS
                                 </a>
                               </li>
-                              {/* <li>
-                                <a
-                                  href={`${process.env.PUBLIC_URL}/ShowCourseList`}
-                                >
-                                  COURSES
-                                </a>
-                              </li>
-                              <li>
-                                <a
-                                  href={`${process.env.PUBLIC_URL}/ShowCategoryList`}
-                                >
-                                  CATEGORIES
-                                </a>
-                              </li>
-                              <li>
-                                <a
-                                  href={`${process.env.PUBLIC_URL}/EnrollmentList`}
-                                >
-                                  ENROLLED USERS
-                                </a>
-                              </li> */}
                               <li className="inactive">
                                 <a
                                 href="/#"
@@ -106,7 +80,6 @@ class NavBar extends Component {
                                       marginRight: "5px"
                                     }}
                                     className="sticky-logo img-fluid"
-                                    //  title="You must have a Gravatar connected to your emial to display the image"
                                   />{" "}
                                   LOGOUT
                                 </a>
@@ -127,26 +100,12 @@ class NavBar extends Component {
     if (users.role === "student") {
       var authLinks = (
         <React.Fragment>
-          {/* <li className="has-children has-children--multilevel-submenu">
-            <a>COURSES</a>
-            <ul className="submenu">
-              <li>
-                <a
-                  href={
-                    `${process.env.PUBLIC_URL}/servicesforstudent/` + users.id
-                  }
-                >
-                  MY COURSES
-                </a>
-              </li> */}
               <li>
                 <a href={`${process.env.PUBLIC_URL}/finalprofiles`}>Study Buddy Finder</a>
               </li>
               <li>
                 <a href={`${process.env.PUBLIC_URL}/feed`}>FORUM</a>
               </li>
-            {/* </ul>
-          </li> */}
           <li className="inactive">
             <a
               href="/#"
@@ -167,40 +126,12 @@ class NavBar extends Component {
     if (users.role === "instructor") {
       authLinks = (
         <React.Fragment>
-          {/* <li className="has-children has-children--multilevel-submenu">
-            <a>COURSES</a>
-            <ul className="submenu">
-              <li>
-                <a href={`${process.env.PUBLIC_URL}/services/` + users.id}>
-                  MY COURSES
-                </a>
-              </li>
-              <li>
-                <a href={`${process.env.PUBLIC_URL}/addcourse/` + users.id}>
-                  ADD COURSES
-                </a>
-              </li>
-              <li>
-                <a href={`${process.env.PUBLIC_URL}/add-lecture/` + users.id}>
-                  ADD LECTURE
-                </a>
-              </li>
-              <li>
-                <a href={`${process.env.PUBLIC_URL}/services`}>ALL COURSES</a>
-              </li>
-            </ul>
-          </li> */}
           <li>
             <a href={`${process.env.PUBLIC_URL}/feed`}>FORUM</a>
           </li>
           <li>
             <a href={`${process.env.PUBLIC_URL}/finaldashboard`}>PROFILE</a>{" "}
           </li>
-          {/* <li>
-              <a href={`${process.env.PUBLIC_URL}/services/`}>
-                SERVICE
-              </a>{" "}
-              </li> */}
           <li>
             <a
               href="/#"
@@ -211,7 +142,6 @@ class NavBar extends Component {
                 src="https://cdn1.iconfinder.com/data/icons/user-avatars-2/300/04-512.png"
                 alt={users.first_name}
                 style={{ width: "25px", marginRight: "5px" }}
-                //  title="You must have a Gravatar connected to your emial to display the image"
               />{" "}
               LOGOUT
             </a>
@@ -273,16 +203,6 @@ class NavBar extends Component {
                           </a>
 
                           <ul id="main-nav-ul">
-                            {/* <li>
-                              <a href={`${process.env.PUBLIC_URL}/home-two`}>
-                                HOME
-                              </a>
-                            </li>
-                            <li>
-                              <a href={`${process.env.PUBLIC_URL}/about-us`}>
-                                ABOUT
-                              </a>
-                            </li> */}
 
                             {isAuthenticated ? authLinks : guestLinks}
                           </ul>

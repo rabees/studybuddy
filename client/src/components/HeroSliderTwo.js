@@ -4,7 +4,7 @@ import Swiper from "react-id-swiper";
 class HeroSliderOne extends Component {
   render() {
     const params = {
-      slidesPerView: 1,
+      slidesPerView: 1, 
       loop: true,
       speed: 1000,
       watchSlidesVisibility: true,

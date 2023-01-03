@@ -60,7 +60,7 @@ class TestimonialSlider extends Component {
           <div className="content">{val.testimonialText}</div>
         </div>
       );
-    });
+    }); 
 
     return (
       <div>

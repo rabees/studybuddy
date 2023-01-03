@@ -84,4 +84,4 @@ class HeroSliderOne extends Component{
     }
 }
 
-export default HeroSliderOne;
+export default HeroSliderOne; 

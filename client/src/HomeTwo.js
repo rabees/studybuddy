@@ -15,30 +15,15 @@ class HomeTwo extends Component {
         {/* Hero slider */}
         <HeroSliderTwo />
 
-        {/* Video CTA */}
+        {/* About Us*/}
         <AboutUs />
-
-        {/* Project Slider */}
-        {/* <ProjectSliderTwo /> */}
-
-        {/* Service Tab */}
-        {/* <ServiceTab /> */}
 
         {/* Testimonial Slider */}
         <TestimonialSlider />
 
-        {/* Team job */}
-
-        {/* Brand logo */}
-        {/* <BrandLogoSlider background="grey-bg" /> */}
-
-        {/* Blog grid */}
-
         {/* Footer */}
         <Footer />
-
-        {/* Mobile Menu */}
-        {/* <MobileMenu /> */}
+        
       </div>
     );
   }
