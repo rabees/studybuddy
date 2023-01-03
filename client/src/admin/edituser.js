@@ -121,17 +121,6 @@ export default class UserEdit extends Component {
                   <input type="password" class="form-control" name="password" value={this.state.todos.password} onChange={this.onChange} placeholder="password" />
                 </div>
                 <div>
-                {/* <label>Role</label>
-                <select 
-                            className="form-control" name="role"
-                            id="ada"
-                            onChange={this.onChange}
-                            value={this.state.todos.role} 
-                            >
-                                {/* {this.RoleList()} */}
-                              
-                                
-                            {/* </select> */} 
                             <label>Role</label>
                             <p>{message}</p>
                             </div>

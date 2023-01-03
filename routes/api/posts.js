@@ -59,7 +59,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
     newPost.save().then(post => res.json(post));
 });
 
-// @route   PATCH api/posts/edit/:id
+// @route   put api/posts/edit/:id
 // @desc    Edit post
 // @access  Private
 router.put('/posts/edit/:id', passport.authenticate('jwt', { session: false }), (req, res) => {

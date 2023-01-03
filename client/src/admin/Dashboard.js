@@ -171,21 +171,17 @@ class Dashboard extends Component {
 				<tr className='row'>
 		<th className="col-md-6">
 			<CanvasJSChart options = {options1}
-				/* onRef={ref => this.chart = ref} */
 			/>
 			</th>
 		<th className="col-md-6">
 			<CanvasJSChart options = {options3}
-				/* onRef={ref => this.chart = ref} */
 			/>
 		</th>
 		</tr>	
 		<br></br>
 		<div className="row">
 			<CanvasJSChart options = {options2}
-				/* onRef={ref => this.chart = ref} */
 			/>
-			{/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
 		</div>
     </div>
 		</div>

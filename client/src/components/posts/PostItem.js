@@ -36,8 +36,7 @@ class PostItem extends Component {
 
   render() {
     const { post, auth, showActions } = this.props;
-    console.log("post",post)
-    console.log("auth",auth)
+
 
     return (
       <div className="card card-body mb-3">
@@ -89,7 +88,7 @@ class PostItem extends Component {
 
 
 
-                {post.user === auth.users.id ? (
+                {/* {post.user === auth.users.id ? (
                   <Link
                     to={`/post/edit/${post._id}`}
                     onClick={this.onUpdateClick.bind(this, post._id)}
@@ -98,7 +97,7 @@ class PostItem extends Component {
                   <i className='fas fa-edit'/>
                   Edit Post
                   </Link>
-                ) : null}
+                ) : null} */}
               </span>
             ) : null}
           </div>

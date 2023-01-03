@@ -1,5 +1,4 @@
 import React, { Component} from 'react';
-// import { Link } from 'react-router-dom';
 import NavBar from "../components/NavBar";
 import axios from 'axios';
 import "./admin.css";
@@ -20,8 +19,6 @@ const Todo = props => (
         <td>{props.todo.email}</td>
         <td>{props.todo.role}</td>
         <td>
-            {/* <Link to={"users/edit/"+props.todo._id}>Edit</Link> */}
-            {/* <button className="button muted-button" className="btn btn-success"><Link to={"users/edit/"+props.todo._id}>Edit</Link></button> */}
             <a href={"/allusers/edit/"+props.todo._id} className="btn btn-primary btn-info" role="button" aria-pressed="true">Edit</a>
             
         </td>
@@ -59,15 +56,6 @@ export default class UserList extends Component {
         
        
     }
-    
-
-    // todoList() {
-    //     return this.state.todos.map(function(currentTodo, i){
-    //         // console.log(currentTodo.first_name)
-    //         return <Todo todo={currentTodo} key={i} />;
-
-    //     })
-    // }
 
     render() {
         //used in filtering the content coming from database mongo

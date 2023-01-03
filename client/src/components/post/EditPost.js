@@ -3,18 +3,21 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import { updatePost } from '../../actions/postActions';
+import { useParams } from 'react-router-dom';
 
 class EditPost extends Component {
   constructor(props) {
     super(props);
     this.state = {
       text: '',
-      errors: {}
+      errors: {},
+     
     };
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
+
 
   componentWillReceiveProps(newProps) {
     if (newProps.errors) {
@@ -27,6 +30,7 @@ class EditPost extends Component {
 
     // const { user } = this.props.auth;
     console.log("au", this.props)
+    // eslint-disable-next-line
     const { user } = this.props.auth.users;
 
 
@@ -37,7 +41,7 @@ class EditPost extends Component {
       // avatar: user.avatar
     };
 
-    this.props.updatePost(updatedPost);
+    this.props.updatePost(this.props.match.params.id, updatedPost);
     // this.setState({ text: '' }); // After adding new post, text field becomes empty
   }
 

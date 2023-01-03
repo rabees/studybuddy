@@ -24,7 +24,7 @@ class PostForm extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-
+    // eslint-disable-next-line
     const { user } = this.props.auth.users;
     console.log("user",this.props.auth.users)
 
