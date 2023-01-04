@@ -23,7 +23,7 @@ class CommentItem extends Component {
               />
             </a>
             <br />
-            <p className="text-center">{comment.first_name} {comment.last_name?comment.last_name:""}</p>
+            <h4 className="text-center">{comment.first_name} {comment.last_name?comment.last_name:""}</h4>
           </div>
           <div className="col-md-10">
             <p className="lead">{comment.text}</p>

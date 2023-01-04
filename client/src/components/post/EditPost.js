@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import { updatePost } from '../../actions/postActions';
-import { useParams } from 'react-router-dom';
 
 class EditPost extends Component {
   constructor(props) {

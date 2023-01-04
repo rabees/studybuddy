@@ -48,7 +48,7 @@ class PostItem extends Component {
                 alt=""
               />
             <br />
-            <p className="text-center">{post.first_name} {post.last_name?post.last_name:""}</p>
+            <h4 className="text-center">{post.first_name} {post.last_name?post.last_name:""}</h4>
           </div>
           <div className="col-md-10">
             <p className="lead">{post.text}</p>
