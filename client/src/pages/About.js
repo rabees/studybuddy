@@ -1,13 +1,8 @@
 import React, { Component } from "react";
 import NavBar from "../components/NavBar";
-// import FeatureIcon from "../components/FeatureIcon";
-// import Funfact from "../components/Funfact";
 import TeamMemberGrid from "../components/TeamMemberGrid";
-// import TestimonialSlider from "../components/TestimonialSlider";
-// import BrandLogoSlider from "../components/BrandLogoSlider";
 import Footer from "../components/Footer";
-// import MobileMenu from "../components/MobileMenu";
-// import ModalVideo from "react-modal-video";
+
 class About extends Component {
   constructor() {
     super();
@@ -49,23 +44,13 @@ class About extends Component {
         {/*====================  End of breadcrumb area  ====================*/}
 
         <div className="page-wrapper" style={{marginTop:"20px"}}>
-          {/*About section start*/}
           
-          {/*About section end*/}
-
-          {/* Feature Icon */}
-          
-
           {/* Team member */}
           <TeamMemberGrid />
-
         </div>
 
         {/* Footer */}
         <Footer />
-
-        {/* Mobile Menu */}
-        {/* <MobileMenu /> */}
       </div>
     );
   }

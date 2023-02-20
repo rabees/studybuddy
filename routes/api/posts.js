@@ -62,25 +62,37 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
 // @route   put api/posts/edit/:id
 // @desc    Edit post
 // @access  Private
-router.put('/posts/edit/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
-    Profile.findOne({ user: req.user.id })
-    .then(profile => {
-        Post.findByIdAndUpdate(req.params.id)
-        .then(post => {
-            // Check for post owner
-            if(post.user.toString() !== req.user.id) {
-                return res.status(401).json({ notauthorized: 'User not authorized'});
-            }
-            else {
-                const updatedPost = ({
-                    text: req.body.text,
-                });
-                updatedPost.save().then(post => res.json(post));
-            }
-        })
-         .catch(err => res.status(404).json({ postnotfound: 'No post found'}));
-    });
-});
+router.put('/edit/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
+    const { errors, isValid } = validatePostInput(req.body);
+  
+    // Check validation
+    if (!isValid) {
+      // If any errors, send 400 with errors object
+      return res.status(400).json(errors);
+    }
+  
+    Post.findById(req.params.id)
+      .then(post => {
+        if (!post) {
+          return res.status(404).json({ postnotfound: 'Post not found' });
+        }
+  
+        // Check if the authenticated user is the author of the post
+        if (post.user.toString() !== req.user.id) {
+          return res.status(401).json({ notauthorized: 'User not authorized' });
+        }
+  
+        // Update the post with the new data
+        post.text = req.body.text;
+        // post.first_name = req.body.first_name;
+        // post.last_name = req.body.last_name;
+        // post.avatar = req.body.avatar;
+  
+        // Save the updated post to the database
+        post.save().then(post => res.json(post));
+      })
+      .catch(err => res.status(500).json(err));
+  });  
 
 // @route   DELETE api/posts/:id
 // @desc    Delete post
@@ -155,13 +167,13 @@ router.post('/unlike/:id', passport.authenticate('jwt', { session: false }), (re
 // @desc    Add comment to post
 // @access  Private
 router.post('/comment/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
-    const { errors, isValid} = validatePostInput(req.body);
+    // const { errors, isValid} = validatePostInput(req.body);
 
     // Check validation
-    if(!isValid) {
-        // If any errors, send 400 with errors object
-        return res.status(400).json(errors);
-    }
+    // if(!isValid) {
+    //     // If any errors, send 400 with errors object
+    //     return res.status(400).json(errors);
+    // }
 
     Post.findById(req.params.id)
     .then(post => {

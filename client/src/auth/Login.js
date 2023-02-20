@@ -128,8 +128,6 @@ class Login extends Component {
                       <i className="fab fa-facebook-f" />
                       facebook
                     </button> */}
-
-                   
       {/* //               <button className="btn btn-twitter mb-2 mr-2">
       //                 <i className="fab fa-twitter" />
       //                 Twitter

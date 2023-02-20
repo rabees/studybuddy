@@ -31,18 +31,13 @@ class Services extends Component {
         </div>
         {/*====================  End of breadcrumb area  ====================*/}
 
-        {/*====================  service page content ====================*/}
         <div className="page-wrapper section-space--inner--120">
-          {/*Service section start*/}
           <div className="service-section">
             <div className="container">
               <Dashboard />
             </div>
           </div>
-          {/*Service section end*/}
         </div>
-
-        {/*====================  End of service page content  ====================*/}
 
         {/* Footer */}
         <Footer />

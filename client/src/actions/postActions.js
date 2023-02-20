@@ -68,23 +68,24 @@ export const getPost = id => dispatch => {
     );
 };
 
-// Edit Post
-export const updatePost = (id, data) => dispatch => {
-  console.log("id",id ,"data",data)
+// Edit post
+export const editPost = (id, postData, history) => dispatch => {
+  dispatch(clearErrors());
   axios
-    .put(`/api/posts/edit/${id}`)
+    .put(`/api/posts/edit/${id}`, postData)
     .then(res =>
       dispatch({
         type: EDIT_POST,
-        payload: data
+        payload: res.data
       })
-  )
-  .catch(err =>
+    )
+    .then(() => history.push('/feed'))
+    .catch(err =>
       dispatch({
         type: GET_ERRORS,
         payload: err.response.data
       })
-  );
+    );
 };
 
 // Delete Post

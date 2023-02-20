@@ -8,6 +8,7 @@ import InputGroup from "../common/InputGroup";
 import SelectListGroup from "../common/SelectListGroup";
 import { createProfile, getCurrentProfile } from "../../actions/profileActions";
 import isEmpty from "../../validation/is-empty";
+import NavBar from "../NavBar";
 
 class CreateProfile extends Component {
   constructor(props) {
@@ -32,17 +33,9 @@ class CreateProfile extends Component {
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    // setTimeout(function(){
-    //   window.location.reload()
-    // }.bind(this), 100 
-    // )
   }
 
   componentDidMount() {
-    // setTimeout(function(){
-    //   window.location.reload()
-    // }.bind(this), 50
-    // )
     this.props.getCurrentProfile();
   }
 
@@ -197,6 +190,8 @@ class CreateProfile extends Component {
 
     return (
       <div className="create-profile">
+      <NavBar />
+      <br />
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">

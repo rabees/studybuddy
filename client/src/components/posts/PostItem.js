@@ -3,13 +3,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
 import { Link } from 'react-router-dom';
-import { deletePost, updatePost, addLike, removeLike } from '../../actions/postActions';
+import { deletePost, editPost, addLike, removeLike } from '../../actions/postActions';
 
 class PostItem extends Component {
-  onUpdateClick(id, data) {
-    console.log("id",id)
-    console.log("data",data)
-    this.props.updatePost(id, data);
+  onEditClick(post) {
+    this.props.editPost(post);
   }
 
   onDeleteClick(id) {
@@ -73,7 +71,7 @@ class PostItem extends Component {
                 >
                   <i className="text-secondary fas fa-thumbs-down" />
                 </button>
-                <Link to={`/post/${post._id}`} className="btn btn-info mr-1">
+                <Link to={`/post/${post._id}`} className="btn btn-secondary mr-1">
                   Comments
                 </Link>
                 {post.user === auth.users.id ? (
@@ -86,18 +84,16 @@ class PostItem extends Component {
                   </button>
                 ) : null}
 
-
-
-                {/* {post.user === auth.users.id ? (
+                {post.user === auth.users.id ? (
                   <Link
-                    to={`/post/edit/${post._id}`}
-                    onClick={this.onUpdateClick.bind(this, post._id)}
-                    className="btn btn-raised btn-warning btn-sm mr-5"
+                    to={`/posts/edit/${post._id}`}
+                    onClick={this.onEditClick.bind(this, post)}
+                    type="button"
+                    className="btn btn-warning mr-1"
                   >
-                  <i className='fas fa-edit'/>
-                  Edit Post
+                  Edit
                   </Link>
-                ) : null} */}
+                ) : null}
               </span>
             ) : null}
           </div>
@@ -112,7 +108,7 @@ PostItem.defaultProps = {
 };
 
 PostItem.propTypes = {
-  updatePost: PropTypes.func.isRequired,
+  editPost: PropTypes.func.isRequired,
   deletePost: PropTypes.func.isRequired,
   addLike: PropTypes.func.isRequired,
   removeLike: PropTypes.func.isRequired,
@@ -124,6 +120,6 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { deletePost,updatePost, addLike, removeLike })(
+export default connect(mapStateToProps, { deletePost, editPost, addLike, removeLike })(
   PostItem
 );

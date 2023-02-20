@@ -5,6 +5,7 @@ import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { addEducation } from "../../actions/profileActions";
+import NavBar from "../NavBar";
 
 class AddEducation extends Component {
   constructor(props) {
@@ -64,6 +65,8 @@ class AddEducation extends Component {
 
     return (
       <div className="add-education">
+      <NavBar/>
+      <br />
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
@@ -125,7 +128,7 @@ class AddEducation extends Component {
                     id="current"
                   />
                   <label htmlFor="current" className="form-check-label">
-                    Current Job
+                    Currently studying
                   </label>
                 </div>
                 <TextAreaFieldGroup

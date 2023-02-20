@@ -1,4 +1,4 @@
 module.exports = {
-  mongoURI: 'mongodb+srv://admin:rabbi3000@cluster0.igeao8d.mongodb.net/test',
+  mongoURI: 'mongodb+srv://admin:1DsqqhrE02mEs3Wj@atlascluster.dogkuxg.mongodb.net/test',
   secretOrKey: "secret"
 };

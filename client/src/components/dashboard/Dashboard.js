@@ -7,7 +7,6 @@ import Spinner from "../common/Spinner";
 import ProfileActions from "./ProfileActions";
 import Experience from "./Experience";
 import Education from "./Education";
-// import NavBar from "../../components/NavBar";
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -19,7 +18,9 @@ class Dashboard extends Component {
   }
 
   render() {
-    // const { user } = this.props.auth;
+    
+    // eslint-disable-next-line
+    const { user } = this.props.auth;
     const { profile, loading } = this.props.profile;
     console.log(profile);
     let dashboardContent;
@@ -30,7 +31,7 @@ class Dashboard extends Component {
       if (Object.keys(profile).length > 0) {
         dashboardContent = (
           <div>
-            {/* <p className="lead text-muted"> */}
+            <p className="lead text-muted">
               <h1>
                 Welcome{" "}
                 <Link
@@ -41,17 +42,18 @@ class Dashboard extends Component {
                 </Link>
               </h1>
               <br />
-            {/* </p> */}
+            </p>
             <ProfileActions />
             <Experience experience={profile.experience} />
             <Education education={profile.education} />
             <div style={{ marginBottom: "60px" }} />
-            <button
+            <Link
+              to={"/login/student"}
               onClick={this.onDeleteClick.bind(this)}
               className="btn btn-danger"
             >
               Delete My Account
-            </button>
+            </Link>
           </div>
         );
       } else {

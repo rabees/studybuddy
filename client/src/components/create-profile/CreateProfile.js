@@ -7,6 +7,7 @@ import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import InputGroup from '../common/InputGroup';
 import SelectListGroup from '../common/SelectListGroup';
 import { createProfile } from '../../actions/profileActions';
+import NavBar from '../NavBar';
 
 class CreateProfile extends Component {
   constructor(props) {
@@ -135,6 +136,7 @@ class CreateProfile extends Component {
 
     return (
       <div className="create-profile">
+      <NavBar/>
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">

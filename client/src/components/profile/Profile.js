@@ -8,6 +8,7 @@ import ProfileCreds from "./ProfileCreds";
 import ProfileGithub from "./ProfileGithub";
 import Spinner from "../common/Spinner";
 import { getProfileByHandle } from "../../actions/profileActions";
+import NavBar from "../NavBar";
 
 class Profile extends Component {
   componentDidMount() {
@@ -34,10 +35,10 @@ class Profile extends Component {
           <div className="row">
             <div className="col-md-6">
               <Link
-                to="/home-two"
+                to="/finalprofiles"
                 className="btn btn-light mb-3 float-left"
               >
-                Back To Home
+                Back To Profiles
               </Link>
             </div>
             <div className="col-md-6" />
@@ -57,6 +58,8 @@ class Profile extends Component {
 
     return (
       <div className="profile">
+      <NavBar />
+      <br />
         <div className="container">
           <div className="row">
             <div className="col-md-12">{profileContent}</div>

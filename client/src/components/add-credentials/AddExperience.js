@@ -5,6 +5,7 @@ import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { addExperience } from "../../actions/profileActions";
+import NavBar from "../NavBar";
 
 class AddExperience extends Component {
   constructor(props) {
@@ -64,6 +65,8 @@ class AddExperience extends Component {
 
     return (
       <div className="add-experience">
+      <NavBar/>
+      <br />
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">

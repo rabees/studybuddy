@@ -7,6 +7,7 @@ import CommentForm from './CommentForm';
 import CommentFeed from './CommentFeed';
 import Spinner from '../common/Spinner';
 import { getPost } from '../../actions/postActions';
+import NavBar from '../NavBar';
 
 class Post extends Component {
     componentDidMount() {
@@ -31,6 +32,8 @@ class Post extends Component {
 
     return (
         <div className="post">
+        <NavBar />
+        <br />
           <div className="container">
             <div className="row">
               <div className="col-md-12">

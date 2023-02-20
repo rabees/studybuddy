@@ -15,7 +15,6 @@ class AboutUs extends Component {
   render() {
     return (
       <div>
-        {/*====================  video cta area ====================*/}
         <div className="video-cta-area section-space--inner--120">
           <div className="container">
             <div className="row align-items-center">
@@ -49,7 +48,6 @@ class AboutUs extends Component {
             </div>
           </div>
         </div>
-        {/*====================  End of video cta area  ====================*/}
       </div>
     );
   }

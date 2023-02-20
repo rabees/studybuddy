@@ -37,6 +37,7 @@ class CommentForm extends Component {
 
     this.props.addComment(postId, newComment);
     this.setState({ text: '' });
+    this.setState({ errors: {} });
   }
 
   onChange(e) {
@@ -49,7 +50,7 @@ class CommentForm extends Component {
     return (
       <div className="post-form mb-3">
         <div className="card card-info">
-          <div className="card-header bg-info text-white">
+          <div className="card-header bg-dark text-white">
             Make a comment...
           </div>
           <div className="card-body">

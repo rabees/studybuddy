@@ -19,6 +19,9 @@ class Services extends Component {
                 <div className="page-banner text-center">
                   <h1>Instructor Profiles</h1>
                   <ul className="page-breadcrumb">
+                    <li>
+                      <a href="/">Home</a>
+                    </li>
                     <li>All Profiles</li>
                   </ul>
                 </div>
@@ -28,18 +31,13 @@ class Services extends Component {
         </div>
         {/*====================  End of breadcrumb area  ====================*/}
 
-        {/*====================  service page content ====================*/}
         <div className="page-wrapper section-space--inner--120">
-          {/*Service section start*/}
           <div className="service-section">
             <div className="container">
               <Profiles />
             </div>
           </div>
-          {/*Service section end*/}
         </div>
-
-        {/*====================  End of service page content  ====================*/}
 
         {/* Footer */}
         <Footer />

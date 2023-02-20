@@ -32,9 +32,6 @@ export default class CreateUser extends Component {
     }
 
     componentDidMount() {
-       
-        
-
             axios.get('http://localhost:5000/showroles/')
             .then(response => {
                 this.setState({ Roles: response.data });
@@ -42,7 +39,6 @@ export default class CreateUser extends Component {
             .catch(function (error){
                 console.log(error);
             })
-        
     }
 
     RoleList() {
@@ -118,13 +114,14 @@ export default class CreateUser extends Component {
 
     // JSX code which is needed to display the form
     render() {
-        // var message='You selected '+this.state.role
+        // eslint-disable-next-line
+        var message='You selected '+this.state.role
         return (
             <div>
                 <NavBar />
             
         <div className="container">
-    <div className="row">
+        <div className="row">
         <div className="col-md-6 mt-5 mx-auto">
             <form onSubmit={this.onSubmit} >
                 <Link to="/allusers" className="btn btn-light">Go Back</Link>
@@ -166,9 +163,8 @@ export default class CreateUser extends Component {
                         onChange={this.onChangePassword}
                         />
                 </div>
-
                 <div>
-                        <label>Role: </label>
+                            <label>Role: </label>
                             <br/>
                     
                             <select 
@@ -180,9 +176,6 @@ export default class CreateUser extends Component {
                             >
                             {this.RoleList()}
                                 <option value="admin">admin</option>
-                                {/* <option value="student">student</option>
-                                <option value="instructor">instructor</option> */}
-                                
                             </select>                     
                             
                             </div>
@@ -195,7 +188,6 @@ export default class CreateUser extends Component {
     </div>
     </div>
 </div>
-        
         )
     }
 }

@@ -7,12 +7,9 @@ const divStyle =  {
     display:"contents"
 }
 
-
 const Todo = props => (
 
-    
     <div style={divStyle} >
-    
     <tr>
         <td>{props.todo.first_name}</td>
         <td>{props.todo.last_name}</td>
@@ -20,12 +17,10 @@ const Todo = props => (
         <td>{props.todo.role}</td>
         <td>
             <a href={"/allusers/edit/"+props.todo._id} className="btn btn-primary btn-info" role="button" aria-pressed="true">Edit</a>
-            
         </td>
     </tr>
     </div>
 );
-
 
 export default class UserList extends Component {
     constructor(props) {
@@ -34,7 +29,6 @@ export default class UserList extends Component {
         this.state = {todos: [],
                     search:''    
         };
-        
     }
 
     //for searching event in page
@@ -52,10 +46,16 @@ export default class UserList extends Component {
             .catch(function (error){
                 console.log(error);
             })
-            
-        
-       
     }
+    
+
+    // todoList() {
+    //     return this.state.todos.map(function(currentTodo, i){
+    //         // console.log(currentTodo.first_name)
+    //         return <Todo todo={currentTodo} key={i} />;
+
+    //     })
+    // }
 
     render() {
         //used in filtering the content coming from database mongo
@@ -67,10 +67,8 @@ export default class UserList extends Component {
             }
         );
         return (
-           
             <div>
                 <NavBar/>           
-               
                <div style={{padding:"20px",display:"flex",flexDirection:"row",justifyContent:"space-between"}}>
                <a href="/users/create" className="btn btn-primary btn-info btn active" role="button" aria-pressed="true">Create Admin</a> <br/>
                
@@ -91,7 +89,6 @@ export default class UserList extends Component {
                          </tr>
                      </thead>
                      <tbody>
-                       
                          {/* displaying data coming  */}
                      {filteredusers.map(function(currentTodo, i){
            

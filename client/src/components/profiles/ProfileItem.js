@@ -16,7 +16,7 @@ class ProfileItem extends Component {
             <img src="/assets/img/profile.png" alt="" style={{ width:"72px" }} className="rounded-circle" />
           </div>
           <div className="col-lg-6 col-md-4 col-8">
-            <h3>{profile.user.first_name}</h3>
+            <h3>{profile.user.first_name} {profile.user.last_name}</h3>
             <p>
               {profile.status}{' '}
               {isEmpty(profile.company) ? null : (
@@ -30,6 +30,10 @@ class ProfileItem extends Component {
             </p>
             <Link to={`/profile/${profile.handle}`} className="btn btn-info">
               View Profile
+            </Link>
+            <br />
+            <Link to={`/profile/${profile.handle}/schedule`} className="btn btn-primary">
+              View Schedule
             </Link>
           </div>
           <div className="col-md-4 d-none d-md-block">

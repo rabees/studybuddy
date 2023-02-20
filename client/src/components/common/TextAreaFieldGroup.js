@@ -1,6 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
+// import isEmpty from '../../validation/is-empty';
 
 const TextAreaFieldGroup = ({
   name,
@@ -14,7 +15,8 @@ const TextAreaFieldGroup = ({
     <div className="form-group">
       <textarea
         className={classnames('form-control form-control-lg', {
-          'is-invalid': error
+          'is-invalid': error 
+          // && isEmpty(value)
         })}
         placeholder={placeholder}
         name={name}
@@ -26,6 +28,7 @@ const TextAreaFieldGroup = ({
     </div>
   );
 };
+
 
 TextAreaFieldGroup.propTypes = {
   name: PropTypes.string.isRequired,

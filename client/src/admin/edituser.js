@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import Navbar from "../components/NavBar";
-
 import axios from 'axios';
-
 
 const ShowRole = props => (
   <option key={props.todo.name} value={props.todo.name}>{props.todo.name}</option>
-  
-          
 );
-
 
 export default class UserEdit extends Component {
     constructor(props) {
@@ -90,12 +84,8 @@ export default class UserEdit extends Component {
           <Navbar/>
         <div class="container">
           <div class="panel panel-default">
-          
             <div class="panel-heading">
               <br/>
-              <Link to="/allusers" className="btn btn-light">Go Back</Link>
-                <br/>
-                <br/>
               <h3 class="panel-title">
                 EDIT User
               </h3>
@@ -121,10 +111,18 @@ export default class UserEdit extends Component {
                   <input type="password" class="form-control" name="password" value={this.state.todos.password} onChange={this.onChange} placeholder="password" />
                 </div>
                 <div>
-                            <label>Role</label>
+                <label>Role</label>
+                <select 
+                            className="form-control" name="role"
+                            id="ada"
+                            onChange={this.onChange}
+                            value={this.state.todos.role} 
+                            >
+                            {this.RoleList()}
+                            </select>
                             <p>{message}</p>
                             </div>
-                <select 
+                {/* <select 
                 className="form-control" name="role"
                 id="ada" 
                 onChange={this.onChange}
@@ -132,13 +130,10 @@ export default class UserEdit extends Component {
                     <option value="admin">admin</option>
                     <option value="instructor">instructor</option>
                     <option value="student">student</option>
-                </select>
+                </select> */}
                 <br/>
                 <button type="submit" class="btn btn-dark">Update</button> &nbsp;
                 <button onClick={this.delete.bind(this, this.state.todos._id)} class="btn btn-danger">Delete</button>
-              
-              
-            
                </form>
             </div>
           </div>

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import NavBar from "./components/NavBar";
 import HeroSliderTwo from "./components/HeroSliderTwo";
+import AboutUs from "./components/AboutUs";
 import TestimonialSlider from "./components/TestimonialSlider";
 import Footer from "./components/Footer";
-import AboutUs from "./components/AboutUs";
 
 class HomeTwo extends Component {
   render() {
@@ -15,7 +15,7 @@ class HomeTwo extends Component {
         {/* Hero slider */}
         <HeroSliderTwo />
 
-        {/* About Us*/}
+        {/* AboutUs */}
         <AboutUs />
 
         {/* Testimonial Slider */}
@@ -23,7 +23,6 @@ class HomeTwo extends Component {
 
         {/* Footer */}
         <Footer />
-        
       </div>
     );
   }

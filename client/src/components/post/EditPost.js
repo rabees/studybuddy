@@ -2,63 +2,70 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
-import { updatePost } from '../../actions/postActions';
+import { getPost, editPost } from '../../actions/postActions';
+import { Link } from 'react-router-dom';
+import NavBar from '../NavBar';
 
 class EditPost extends Component {
   constructor(props) {
     super(props);
     this.state = {
       text: '',
-      errors: {},
-     
+      errors: {}
     };
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentDidMount() {
+    const postId = this.props.match.params.id;
+    this.props.getPost(postId);
+  }
 
-  componentWillReceiveProps(newProps) {
-    if (newProps.errors) {
-      this.setState({ errors: newProps.errors });
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+
+    if (nextProps.post.post) {
+      const { text } = nextProps.post.post;
+      this.setState({ text });
+      this.setState({ errors: {} });
     }
   }
 
   onSubmit(e) {
     e.preventDefault();
-
-    // const { user } = this.props.auth;
-    console.log("au", this.props)
-    // eslint-disable-next-line
-    const { user } = this.props.auth.users;
-
-
+    
     const updatedPost = {
-      text: this.state.text,
-      first_name: this.props.auth.users.first_name,
-      // last_name: user.last_name,
-      // avatar: user.avatar
+      text: this.state.text
     };
-
-    this.props.updatePost(this.props.match.params.id, updatedPost);
-    // this.setState({ text: '' }); // After adding new post, text field becomes empty
+    
+    this.props.editPost(this.props.match.params.id, updatedPost, this.props.history);
+    // this.setState({ errors: {} });
   }
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
+
   render() {
     const { errors } = this.state;
 
     return (
-      <div className="post-form mb-3">
-        <div className="card card-info">
-          <div className="card-header bg-info text-white">Update Your Post</div>
-          <div className="card-body">
+      <div>
+      <NavBar/>
+      <div className="container">
+          <div className="row">
+            <div className="col-md-8 m-auto">
+              <h2 className="display-4 text-center">Edit Post</h2>
+             
+            <div className="card-body">
             <form onSubmit={this.onSubmit}>
               <div className="form-group">
                 <TextAreaFieldGroup
-                  placeholder="Edit Post"
+                  placeholder="Edit post"
                   name="text"
                   value={this.state.text}
                   onChange={this.onChange}
@@ -66,25 +73,31 @@ class EditPost extends Component {
                 />
               </div>
               <button type="submit" className="btn btn-dark">
-                Submit
+                Update
               </button>
+              <Link to={"/feed"} className="btn btn-light">
+                Back
+              </Link>
             </form>
           </div>
         </div>
+      </div>
+      </div>
       </div>
     );
   }
 }
 
 EditPost.propTypes = {
-  updatePost: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
+  getPost: PropTypes.func.isRequired,
+  editPost: PropTypes.func.isRequired,
+  post: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth,
+  post: state.post,
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { updatePost })(EditPost);
+export default connect(mapStateToProps, { getPost, editPost })(EditPost);

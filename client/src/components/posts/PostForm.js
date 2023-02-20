@@ -37,6 +37,7 @@ class PostForm extends Component {
 
     this.props.addPost(newPost);
     this.setState({ text: '' }); // After adding new post, text field becomes empty
+    this.setState({ errors: {} });
   }
 
   onChange(e) {
@@ -49,7 +50,7 @@ class PostForm extends Component {
     return (
       <div className="post-form mb-3">
         <div className="card card-info">
-          <div className="card-header bg-info text-white">Ask your buddies...</div>
+          <div className="card-header bg-dark text-white">Ask your buddies...</div>
           <div className="card-body">
             <form onSubmit={this.onSubmit}>
               <div className="form-group">
@@ -66,7 +67,7 @@ class PostForm extends Component {
               </button>
             </form>
           </div>
-          <div className="card-header bg-info text-white">Recent Posts</div>
+          <div className="card-header bg-dark text-white">Recent Posts</div>
         </div>
       </div>
     );

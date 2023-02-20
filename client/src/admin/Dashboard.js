@@ -4,6 +4,7 @@ import CanvasJSReact from "../canvas/canvasjs.react"
 
 import axios from "axios";
 
+// eslint-disable-next-line
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
@@ -16,14 +17,15 @@ class Dashboard extends Component {
                    
         };
     }
-	getCoursedata(){
-		axios.get('http://localhost:5000/courses/')
+	getGroupdata(){
+		axios.get('http://localhost:5000/groups/')
             .then(response => {
 				
 				var dict={};
 				dd=[];
 				response.data.forEach(element => {
 					//console.log(element);
+					// eslint-disable-next-line
 					if( dict[element.instructor.email] == undefined){
 						dict[element.instructor.email] = 1;
 					}
@@ -45,6 +47,7 @@ class Dashboard extends Component {
 
 				response.data.forEach(element => {
 					//console.log(element);label
+					// eslint-disable-next-line
 					if( dict[element.category.categoryName] == undefined){
 						dict[element.category.categoryName] = 1;
 					}
@@ -53,7 +56,7 @@ class Dashboard extends Component {
 					}
 					
 				});
-				
+				// eslint-disable-next-line
 				for( var k in dict){
 					dd.push({ y : dict[k], name: k })
 				}
@@ -74,11 +77,12 @@ class Dashboard extends Component {
 				dd=[];
 				response.data.forEach(element => {
 					//console.log(element);
-					if( dict[element.course.courseName] == undefined){
-						dict[element.course.courseName] = 1;
+					// eslint-disable-next-line
+					if( dict[element.group.groupName] == undefined){
+						dict[element.group.groupName] = 1;
 					}
 					else{
-						dict[element.course.courseName] += 1;
+						dict[element.group.groupName] += 1;
 					}
 					
 				});
@@ -98,7 +102,7 @@ class Dashboard extends Component {
 
     componentDidMount() {
         
-			this.getCoursedata()
+			this.getGroupdata()
 			this.getEnrollmentdata()
         
        
@@ -111,7 +115,7 @@ class Dashboard extends Component {
 			exportEnabled: true,
 			animationEnabled: true,
 			title: {
-				text: "Courses Per Instructor"
+				text: "Groups Per Instructor"
 			},
 			data: [{
 				type: "pie",
@@ -130,7 +134,7 @@ class Dashboard extends Component {
 			exportEnabled: true,
 			animationEnabled: true,
 			title: {
-				text: "Students Per Course"
+				text: "Students Per Group"
 			},
 			data: [
 			{
@@ -146,7 +150,7 @@ class Dashboard extends Component {
 			animationEnabled: true,
 			
 			title: {
-				text: "Courses Per Category"
+				text: "Groups Per Category"
 			},
 			subtitles: [{
 				
@@ -171,23 +175,26 @@ class Dashboard extends Component {
 				<tr className='row'>
 		<th className="col-md-6">
 			<CanvasJSChart options = {options1}
+				/* onRef={ref => this.chart = ref} */
 			/>
 			</th>
 		<th className="col-md-6">
 			<CanvasJSChart options = {options3}
+				/* onRef={ref => this.chart = ref} */
 			/>
 		</th>
 		</tr>	
 		<br></br>
 		<div className="row">
 			<CanvasJSChart options = {options2}
+				/* onRef={ref => this.chart = ref} */
 			/>
+			{/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
 		</div>
     </div>
 		</div>
 		);
 	}
 }
-
 
 export default Dashboard;

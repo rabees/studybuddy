@@ -17,6 +17,7 @@ class NavBar extends Component {
     flexProp: "row"
   };
   classToggle = () => {
+    console.log("hello");
     const { displayProp, flexProp } = this.state;
     this.setState({
       displayProp: displayProp === "none" ? "flex" : "none",
@@ -51,7 +52,7 @@ class NavBar extends Component {
                             <a href={`${process.env.PUBLIC_URL}/home-two`}>
                               <div className="logoHead">
                                 <img
-                                  src="/assets/img/logo/logo.png"
+                                  src="/assets/img/logo/logonew.png"
                                   alt=""
                                   className="sticky-logo img-fluid"
                                 />
@@ -61,13 +62,39 @@ class NavBar extends Component {
 
                             <ul id="main-nav-ul">
                               <li>
+                                <a href={`${process.env.PUBLIC_URL}/dashboard`}>
+                                  DASHBOARD
+                                </a>
+                              </li>
+                              <li>
                                 <a href={`${process.env.PUBLIC_URL}/allusers`}>
                                   USERS
                                 </a>
                               </li>
+                              <li>
+                                <a
+                                  href={`${process.env.PUBLIC_URL}/ShowGroupList`}
+                                >
+                                  GROUPS
+                                </a>
+                              </li>
+                              <li>
+                                <a
+                                  href={`${process.env.PUBLIC_URL}/ShowCategoryList`}
+                                >
+                                  CATEGORIES
+                                </a>
+                              </li>
+                              <li>
+                                <a
+                                  href={`${process.env.PUBLIC_URL}/EnrollmentList`}
+                                >
+                                  ENROLLED USERS
+                                </a>
+                              </li>
                               <li className="inactive">
                                 <a
-                                href="/#"
+                                  href="/#"
                                   onClick={this.onLogoutClick.bind(this)}
                                   className="nav-link"
                                 >
@@ -100,12 +127,29 @@ class NavBar extends Component {
     if (users.role === "student") {
       var authLinks = (
         <React.Fragment>
+        <li>
+          <a href={`${process.env.PUBLIC_URL}/finalprofiles`}>Study Buddy Finder</a>
+        </li>
+        <li>
+          <a href={`${process.env.PUBLIC_URL}/feed`}>FORUM</a>
+          </li>
+          <li className="has-children has-children--multilevel-submenu">
+            <a href={`${process.env.PUBLIC_URL}/services`}>GROUPS</a>
+            <ul className="submenu">
               <li>
-                <a href={`${process.env.PUBLIC_URL}/finalprofiles`}>Study Buddy Finder</a>
+                <a
+                  href={
+                    `${process.env.PUBLIC_URL}/servicesforstudent/` + users.id
+                  }
+                >
+                  MY GROUPS
+                </a>
               </li>
               <li>
-                <a href={`${process.env.PUBLIC_URL}/feed`}>FORUM</a>
+                <a href={`${process.env.PUBLIC_URL}/services`}>ALL GROUPS</a>
               </li>
+            </ul>
+          </li>
           <li className="inactive">
             <a
               href="/#"
@@ -124,10 +168,33 @@ class NavBar extends Component {
       );
     }
     if (users.role === "instructor") {
-      authLinks = (
+        authLinks = (
         <React.Fragment>
-          <li>
+        <li>
             <a href={`${process.env.PUBLIC_URL}/feed`}>FORUM</a>
+        </li>
+          <li className="has-children has-children--multilevel-submenu">
+            <a href={`${process.env.PUBLIC_URL}/services`}>GROUPS</a>
+            <ul className="submenu">
+              <li>
+                <a href={`${process.env.PUBLIC_URL}/services/` + users.id}>
+                  MY GROUPS
+                </a>
+              </li>
+              <li>
+                <a href={`${process.env.PUBLIC_URL}/addgroup/` + users.id}>
+                  ADD GROUPS
+                </a>
+              </li>
+              <li>
+                <a href={`${process.env.PUBLIC_URL}/add-resource/` + users.id}>
+                  ADD RESOURCE
+                </a>
+              </li>
+              <li>
+                <a href={`${process.env.PUBLIC_URL}/services`}>ALL GROUPS</a>
+              </li>
+            </ul>
           </li>
           <li>
             <a href={`${process.env.PUBLIC_URL}/finaldashboard`}>PROFILE</a>{" "}
@@ -203,7 +270,6 @@ class NavBar extends Component {
                           </a>
 
                           <ul id="main-nav-ul">
-
                             {isAuthenticated ? authLinks : guestLinks}
                           </ul>
 
