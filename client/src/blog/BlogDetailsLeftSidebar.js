@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
-import MobileMenu from "../components/MobileMenu";
 import axios from "axios";
 import VideoList from "./VideoList";
 import VideoDetail from "./VideoDetail";
@@ -126,7 +125,6 @@ class BlogDetailsLeftSidebar extends Component {
         </div>
         {/*====================  End of breadcrumb area  ====================*/}
 
-        {/*====================  project details page content ====================*/}
         <div className="page-wrapper section-space--inner--120">
           {/*Projects section start*/}
           <div className="project-section">
@@ -188,8 +186,6 @@ class BlogDetailsLeftSidebar extends Component {
         {/* Footer */}
         <Footer />
 
-        {/* Mobile Menu */}
-        <MobileMenu />
       </div>
     );
   }
