@@ -296,4 +296,16 @@ router.delete(
   }
 );
 
+router.get('/profiles/search', (req, res) => {
+  const query = req.query.q; // Get the search query from the request query string
+
+  Profile.find({ skills: { $regex: new RegExp(query, 'i') } })
+    .populate('user', ['first_name', 'last_name', 'avatar'])
+    .then(profiles => {
+      res.json(profiles);
+    })
+    .catch(err => res.status(404).json({ noProfilesFound: 'No profiles found' }));
+});
+
+
 module.exports = router;

@@ -6,7 +6,8 @@ import {
   PROFILE_LOADING,
   CLEAR_CURRENT_PROFILE,
   GET_ERRORS,
-  SET_CURRENT_USER
+  SET_CURRENT_USER,
+  SEARCH_PROFILES
 } from "./types";
 
 // Get current profile
@@ -173,4 +174,28 @@ export const clearCurrentProfile = () => {
   return {
     type: CLEAR_CURRENT_PROFILE
   };
+};
+
+// Search profiles
+export const searchProfiles = searchTerm => dispatch => {
+  dispatch(setProfileLoading());
+  dispatch({
+    type: SEARCH_PROFILES,
+    payload: searchTerm
+  });
+
+  axios
+    .get(`/api/profiles/search/${searchTerm}`)
+    .then(res =>
+      dispatch({
+        type: GET_PROFILES,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_PROFILES,
+        payload: null
+      })
+    );
 };

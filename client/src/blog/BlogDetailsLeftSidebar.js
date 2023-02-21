@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import axios from "axios";
 import VideoList from "./VideoList";
 import VideoDetail from "./VideoDetail";
+// import SearchBar from "./SearchBar";
 
 class BlogDetailsLeftSidebar extends Component {
   constructor(props) {
@@ -126,7 +127,6 @@ class BlogDetailsLeftSidebar extends Component {
         {/*====================  End of breadcrumb area  ====================*/}
 
         <div className="page-wrapper section-space--inner--120">
-          {/*Projects section start*/}
           <div className="project-section">
             <div className="container">
               {/* <SearchBar onFormSubmit={this.onTextSubmit} /> */}
