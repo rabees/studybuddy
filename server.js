@@ -13,7 +13,7 @@ var multer = require('multer')
 var cors = require('cors');
 const profile = require('./routes/api/profile');
 const posts = require('./routes/api/posts');
-// const schedule = require('./routes/api/schedule');
+const appointmentRoutes = require("./routes/api/appointment");
 
 const app = express();
 
@@ -33,7 +33,7 @@ app.use(bodyParser.json({limit: '50mb', extended: true}));
 
 //Connect to mongodb through mongoose
 mongoose
-  .connect(db,  { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
+  .connect(db,  { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
   .then(() => console.log("MongoDB connected"))
   .catch(err => console.log(err));
 
@@ -50,6 +50,7 @@ app.use(enroll);
 app.use(role);
 app.use("/api/profile", profile);
 app.use("/api/posts", posts);
+app.use("/api", appointmentRoutes);
 
 const port = process.env.PORT || 5000;
 

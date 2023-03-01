@@ -43,12 +43,12 @@ class Register extends Component {
     // console.log(newUser);
 
     axios
-      .post("http://localhost:5000/users/register", newUser)
-      .then(res => console.log(res.data))
-      .catch(err => this.setState({ errors: err.response.data }));
-      this.props.history.push("/login/"+this.props.match.params.role)
-    //call registerUser action and pass user data in argument
-   // this.props.registerUser(newUser, this.props.history);
+    .post("http://localhost:5000/users/register", newUser)
+    .then(res => {
+      console.log(res.data);
+      this.props.history.push("/login/" + this.props.match.params.role);
+    })
+    .catch(err => this.setState({ errors: err.response.data }));
   }
 
   componentWillReceiveProps(nextProps) {

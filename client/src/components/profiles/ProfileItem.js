@@ -32,7 +32,7 @@ class ProfileItem extends Component {
               View Profile
             </Link>
             <br />
-            <Link to={`/profile/${profile.handle}/schedule`} className="btn btn-primary">
+            <Link to={`/schedule`} className="btn btn-primary">
               View Schedule
             </Link>
           </div>

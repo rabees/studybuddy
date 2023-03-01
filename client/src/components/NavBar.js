@@ -200,6 +200,9 @@ class NavBar extends Component {
             <a href={`${process.env.PUBLIC_URL}/finaldashboard`}>PROFILE</a>{" "}
           </li>
           <li>
+            <a href={`${process.env.PUBLIC_URL}/ischedule`}>MY SCHEDULE</a>{" "}
+          </li>
+          <li>
             <a
               href="/#"
               onClick={this.onLogoutClick.bind(this)}

@@ -5,6 +5,8 @@ import store from "./store";
 import { Provider } from "react-redux";
 import setAuthToken from "./utils/setAuthToken";
 import jwt_decode from "jwt-decode";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from '@stripe/react-stripe-js';
 
 import Login from "./auth/Login";
 import Register from "./auth/Register";
@@ -47,12 +49,18 @@ import AddEducation from "./components/add-credentials/AddEducation";
 import Profile from "./components/profile/Profile";
 import FinalDashboard from "./components/FinalDashboard";
 import FinalProfiles from "./components/FinalProfiles";
-// import Schedule from './components/schedule/Schedule';
 
 //posts stuff
 import Posts from './components/posts/Posts';
 import Post from './components/post/Post';
 import EditPost from "./components/post/EditPost";
+
+//schedule stuff
+import Schedule from "./components/schedule/Schedule";
+import ScheduleForm from "./components/schedule/ScheduleForm";
+import ISchedule from "./components/schedule/ISchedule";
+import IScheduleForm from "./components/schedule/IScheduleForm";
+import Payment from "./components/payment/Payment";
 
 //check for token to avoid state destroy on reload
 if (localStorage.jwtToken) {
@@ -74,6 +82,8 @@ if (localStorage.jwtToken) {
     window.location.href = "/login/student";
   }
 }
+
+const stripePromise = loadStripe("pk_test_51L2DnCDu7chjgqDrDYFLDrpKGjVrSdlpvJWzNeuntWx6KfA9bqL4sd1XCwOLflqtQBEQae6Z6TAkaFERcOXy4dqy00tMGsgyBJ");
 
 class Root extends Component {
   render() {
@@ -253,11 +263,33 @@ class Root extends Component {
               path={`${process.env.PUBLIC_URL}/profile/:handle`}
               component={Profile}
             />
-            {/* <Route
+            <Route 
               exact
-              path={`${process.env.PUBLIC_URL}/profile/:handle/schedule`}
-              component={Schedule}
-            /> */}
+              path={`${process.env.PUBLIC_URL}/schedule`} // for student
+              component={Schedule} 
+            />
+            <PrivateRoute 
+              exact
+              path={`${process.env.PUBLIC_URL}/ischedule`} // for instructor
+              component={ISchedule} 
+            />
+            <PrivateRoute 
+              exact
+              path={`${process.env.PUBLIC_URL}/schedule/book`} // for student
+              component={ScheduleForm} 
+            />
+            <Route 
+              exact
+              path={`${process.env.PUBLIC_URL}/ischedule/book`} // for student
+              component={IScheduleForm} 
+            />
+            <Elements stripe={stripePromise}>
+            <PrivateRoute 
+              exact
+              path={`${process.env.PUBLIC_URL}/payment`} 
+              component={Payment} 
+            />
+            </Elements>
             <PrivateRoute
               exact
               path={`${process.env.PUBLIC_URL}/add-education`}

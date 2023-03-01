@@ -6,7 +6,9 @@ const jwt = require("jsonwebtoken");
 //Load user model for email exist checking
 const keys = require("../../config/keys");
 const User = require("../../models/User");
+const Payment = require("../../models/Payment");
 const passport = require("passport");
+const stripe = require('stripe')('sk_test_51L2DnCDu7chjgqDrURqah25bZe30yxmbbbaheNn6MCsn06rJSK6l3PX6nBJbPNH2FH6Dm5yhbot0WzP9xGlOKgXp00ebfYc03f');
 
 //Load input  validation
 const validateRegisterInput = require("../../validation/register");
@@ -143,9 +145,7 @@ router.get("/users", (req, res) => {
       .catch(err => {
           res.status(500).json(err)
       })
-      
-          
-})
+});
 
 router.post('/user', (req, res)=>{
   //req.body
@@ -165,7 +165,7 @@ router.post('/user', (req, res)=>{
   .catch(err=>{
       res.status(500).json(err)
   })
-})
+});
 
 router.get('/user', (req, res) => {
   //var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
@@ -181,8 +181,7 @@ router.get('/user', (req, res) => {
       .catch(err => {
           res.status(500).json(err)
       })
-})
-
+});
 
 router.put('/user/', (req, res) => {
   //var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
@@ -200,7 +199,7 @@ router.put('/user/', (req, res) => {
       .catch(err => {
           res.status(500).json(err)
       })
-})
+});
 
 router.delete('/user', (req, res) => {
   //var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
@@ -215,7 +214,35 @@ router.delete('/user', (req, res) => {
       })
       .catch(err => {
           res.status(500).json(err)
-      })
-})
+      });
+});
+
+// Payment
+router.post('/payment', async (req, res) => {
+  try {
+    const { amount, token, description, userId } = req.body;
+
+    const charge = await stripe.charges.create({
+      amount: amount,
+      currency: 'usd',
+      description: description,
+      source: token.id
+    });
+
+    const payment = new Payment({
+      amount: amount,
+      description: description,
+      stripeChargeId: charge.id,
+      user: userId
+    });
+
+    await payment.save();
+
+    res.json({ success: true, charge, payment });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: error.message });
+  }
+});
 
 module.exports = router;
