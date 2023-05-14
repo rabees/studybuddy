@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import NavBar from "../components/NavBar";
 import axios from "axios";
-// import ShowCategory from './ShowCategory';
 
 const ShowCat = props => (
   <option key={props.todo._id} value={props.todo.categoryName}>

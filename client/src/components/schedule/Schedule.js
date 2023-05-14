@@ -106,6 +106,10 @@ const Schedule = () => {
     <div>
         <NavBar />
         <div className="container">
+        <br />
+        <Link to="/finalprofiles" className="btn btn-light">
+          Go Back
+        </Link>
   <div className="row">
     <div className="col-md-3 mt-5 mx-auto text-center">
       <h1 className="h3 mb-3 font-weight-normal text-center">Select a Date</h1>

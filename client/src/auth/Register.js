@@ -12,7 +12,8 @@ class Register extends Component {
   constructor() {
     super();
     this.state = {
-      first_name:"",
+      username: "",
+      first_name: "",
       last_name: "",
       email: "",
       password: "",
@@ -32,6 +33,7 @@ class Register extends Component {
     e.preventDefault();
 
     const newUser = {
+      username: this.state.username,
       first_name: this.state.first_name,
       last_name: this.state.last_name,
       email: this.state.email,
@@ -81,6 +83,26 @@ class Register extends Component {
                   </div>
                   <h4 className="mb-3 f-w-400">Sign up for your account</h4>
                   <form noValidate onSubmit={this.onSubmit}>
+                  <div className="input-group mb-2">
+                      <div className="input-group-prepend">
+                        <span className="input-group-text">
+                          <i className="feather icon-user" />
+                        </span>
+                      </div>
+                      <input
+                        type="text"
+                        name="username"
+                        className={classnames("form-control", {
+                          "is-invalid": errors.username
+                        })}
+                        placeholder="Username"
+                        value={this.state.username}
+                        onChange={this.onChange}
+                      />
+                      {errors.username && (
+                        <div className="invalid-feedback">{errors.username}</div>
+                      )}
+                    </div>
                     <div className="input-group mb-2">
                       <div className="input-group-prepend">
                         <span className="input-group-text">
