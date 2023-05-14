@@ -7,6 +7,7 @@ const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
 const User = require("../../models/User");
 const Payment = require("../../models/Payment");
+const Rating = require("../../models/rating");
 const passport = require("passport");
 const stripe = require('stripe')('sk_test_51L2DnCDu7chjgqDrURqah25bZe30yxmbbbaheNn6MCsn06rJSK6l3PX6nBJbPNH2FH6Dm5yhbot0WzP9xGlOKgXp00ebfYc03f');
 
@@ -50,7 +51,8 @@ router.post("/users/register", (req, res) => {
         username: req.body.username,
         email: req.body.email,
         password: req.body.password,
-        role: req.body.role
+        role: req.body.role,
+        rating: 0
       });
 
       bcrypt.genSalt(10, (err, salt) => {
@@ -251,6 +253,60 @@ router.post('/payment', async (req, res) => {
     console.log(error);
     res.status(500).json({ error: error.message });
   }
+});
+
+// Route for adding a rating to a user
+router.post("/users/:userId/rating", passport.authenticate('jwt', { session: false }), (req, res) => {
+  const { rating } = req.body;
+
+  // Validate rating value
+  if (typeof rating !== "number" || rating < 0 || rating > 5) {
+    return res.status(400).json({ error: "Invalid rating value" });
+  }
+
+  // Check if user is trying to rate themselves
+  if (req.user.id === req.params.userId) {
+    return res.status(400).json({ error: "Cannot rate yourself" });
+  }
+
+  // Check if user has already rated this user
+  Rating.findOne({ userId: req.params.userId, raterId: req.user.id })
+    .then(existingRating => {
+      if (existingRating) {
+        existingRating.rating = rating;
+        return existingRating.save();
+      }
+
+      // Create new rating object and save to database
+      const newRating = new Rating({
+        userId: req.params.userId,
+        raterId: req.user.id,
+        rating
+      });
+      return newRating.save();
+    })
+    .then(() => res.json({ message: "Rating saved" }))
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ error: "Server error" });
+    });
+});
+
+// Route for getting a user's rating
+router.get("/users/:userId/rating", (req, res) => {
+  Rating.aggregate([
+    { $match: { userId: mongoose.Types.ObjectId(req.params.userId) } },
+    { $group: { _id: "$userId", avgRating: { $avg: "$rating" } } }
+  ]).then(result => {
+    if (!result.length) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    res.json({ rating: result[0].avgRating });
+  }).catch(err => {
+    console.log(err);
+    res.status(500).json({ error: "Server error" });
+  });
 });
 
 module.exports = router;

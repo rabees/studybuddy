@@ -151,10 +151,10 @@ class NavBar extends Component {
             </ul>
           </li>
           <li>
-            <a href={`${process.env.PUBLIC_URL}/chat`}>CHAT</a>{" "}
+            <a href={`https://golden-vacherin-cddd13.netlify.app/`}>CHAT</a>{" "}
           </li>
           <li>
-            <a href={`https://645fd844ea12bc0008e975d5--spiffy-arithmetic-f459d4.netlify.app/`}>VIDEO MEETING</a>{" "}
+            <a href={`https://spiffy-arithmetic-f459d4.netlify.app/`}>VIDEO MEETING</a>{" "}
           </li>
           <li className="inactive">
             <a
@@ -209,7 +209,7 @@ class NavBar extends Component {
             <a href={`${process.env.PUBLIC_URL}/ischedule`}>MY SCHEDULE</a>{" "}
           </li>
           <li>
-            <a href={`${process.env.PUBLIC_URL}/chat`}>CHAT</a>{" "}
+            <a href={`https://golden-vacherin-cddd13.netlify.app/`}>CHAT</a>{" "}
           </li>
           <li>
             <a href={`https://spiffy-arithmetic-f459d4.netlify.app/`}>VIDEO MEETING</a>{" "}
