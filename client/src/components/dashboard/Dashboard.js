@@ -20,14 +20,14 @@ class Dashboard extends Component {
   render() {
     
     // eslint-disable-next-line
-    const { user } = this.props.auth;
+    const { instructor } = this.props.auth;
     const { profile, loading } = this.props.profile;
     console.log(profile);
     let dashboardContent;
     if (profile === null || loading) {
       dashboardContent = <Spinner />;
     } else {
-      // Check if logged in user has profile data
+      // Check if logged in instructor has profile data
       if (Object.keys(profile).length > 0) {
         dashboardContent = (
           <div>
@@ -57,7 +57,7 @@ class Dashboard extends Component {
           </div>
         );
       } else {
-        // User is logged in but has no profile
+        // instructor is logged in but has no profile
         dashboardContent = (
           <div>
             <p className="lead text-muted">Welcome {profile.handle}</p>

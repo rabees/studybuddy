@@ -61,7 +61,7 @@ router.get('/categories', (req, res) => {
     catmodel.find()
         .then(doc => {
            // res.setHeader('Access-Control-Expose-Headers', 'Content-Range');
-            res.setHeader('Content-Range', 'users 0-5/5');
+            res.setHeader('Content-Range', 'instructors 0-5/5');
             res.json(doc)
             
         })

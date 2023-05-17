@@ -16,7 +16,7 @@ class ProfileItem extends Component {
             <img src="/assets/img/profile.png" alt="" style={{ width:"72px" }} className="rounded-circle" />
           </div>
           <div className="col-lg-6 col-md-4 col-8">
-            <h3>{profile.user.first_name} {profile.user.last_name}</h3>
+            <h3>{profile.instructor.first_name} {profile.instructor.last_name}</h3>
             <p>
               {profile.status}{' '}
               {isEmpty(profile.company) ? null : (

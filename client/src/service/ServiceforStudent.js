@@ -24,8 +24,11 @@ class Services extends Component {
   }
   render() {
     let data = this.state.data;
-
-    let Datalist = data.map((val, i) => {
+    let Datalist;
+    if (data.length === 0) {
+      // Display a message when no data is available
+      Datalist = <h3>No groups found.</h3>;
+    } else Datalist = data.map((val, i) => {
       return (
         <div
           className="col-lg-4 col-md-6 col-12 section-space--bottom--30"
@@ -48,8 +51,8 @@ class Services extends Component {
                   /> */}
                 </a>
               </div>
-              <div className="service-grid-item__content">
-                <h3 className="title">
+              <div className="service-grid-item__content" >
+                <h3 className="title" style={{ background: "#F6732E" }}>
                   <a
                     href={
                       `${process.env.PUBLIC_URL}/` +

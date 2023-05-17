@@ -1,6 +1,6 @@
 // let path=require('path');
 let groupmodel = require("../../models/Group");
-let usermodel = require("../../models/User");
+let instructormodel = require("../../models/Instructor");
 let catmodel = require("../../models/Category");
 let express = require("express");
 let router = express.Router();
@@ -43,7 +43,7 @@ router.get("/groups", (req, res, next) => {
   groupmodel
     .find()
     .populate({ path: "category", model: "category" })
-    .populate({ path: "instructor", model: "users" })
+    .populate({ path: "instructor", model: "Instructor" })
 
     .exec(function(err, results) {
       if (err) {

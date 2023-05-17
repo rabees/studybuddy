@@ -102,7 +102,7 @@ class Services extends Component {
               <div className="row">
                 <div className="col-lg-12">
                   <div className="service-item-wrapper">
-                    <div className="row">{Datalist}</div>
+                    <div className="row" style={{ background: "#F6732E", color: "white" }}>{Datalist}</div>
                   </div>
                 </div>
               </div>

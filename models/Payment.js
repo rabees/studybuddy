@@ -18,9 +18,13 @@ const PaymentSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  user: {
+  sender: {
     type: Schema.Types.ObjectId,
-    ref: 'users'
+    ref: 'Student'
+  },
+  recipient: {
+    type: Schema.Types.ObjectId,
+    ref: 'Instructor'
   }
 });
 

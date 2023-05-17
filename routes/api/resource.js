@@ -74,4 +74,15 @@ router.post("/resources/youtubeupload", (req, res) => {
     });
 });
 
+router.get('/resources/search', (req, res) => {
+  const query = req.query.q; // Get the search query from the request query string
+
+  Resource.find({ title: { $regex: new RegExp(query, 'i') } })
+    .populate({ path: 'group', model: 'Group', select: 'groupDescription' })
+    .then(resources => {
+      res.json(resources);
+    })
+    .catch(err => res.status(404).json({ noResourcesFound: 'No resources found' }));
+});
+
 module.exports = router;

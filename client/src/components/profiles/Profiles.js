@@ -22,7 +22,6 @@ class Profiles extends Component {
     const { profiles, loading } = this.props.profile;
     const { search } = this.state;
     let profileItems;
-
     if (profiles === null || loading) {
       profileItems = <Spinner />;
     } else {

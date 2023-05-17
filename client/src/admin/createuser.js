@@ -18,6 +18,7 @@ export default class CreateUser extends Component {
             last_name: '',
             email: '',
             password: '',
+            password2: '',
             role:'admin',
             Roles:['admin','student','instructor']
         };
@@ -27,6 +28,7 @@ export default class CreateUser extends Component {
         this.onChangeLastName = this.onChangeLastName.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
+        this.onChangePassword2 = this.onChangePassword2.bind(this);
         this.onChangeRole=this.onChangeRole.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
@@ -69,6 +71,11 @@ export default class CreateUser extends Component {
             password: e.target.value
         });
     }
+    onChangePassword2(e) {
+        this.setState({
+            password2: e.target.value
+        });
+    }
 
     onChangeRole(e) {
         this.setState({
@@ -85,6 +92,7 @@ export default class CreateUser extends Component {
         console.log(`Todo lname: ${this.state.last_name}`);
         console.log(`Todo email: ${this.state.email}`);
         console.log(`Todo password: ${this.state.password}`);
+        console.log(`Todo password2: ${this.state.password2}`);
         console.log(`Todo Role: ${this.state.role}`);
 
         const newTodo = {
@@ -92,11 +100,12 @@ export default class CreateUser extends Component {
             last_name: this.state.last_name,
             email: this.state.email,
             password: this.state.password,
+            password2: this.state.password2,
             role: this.state.role,
             todo_completed: this.state.todo_completed
         };
 
-        axios.post('http://localhost:5000/user/', newTodo)
+        axios.post('http://localhost:5000/admin', newTodo)
         .then((result) => {
             this.props.history.push("/allusers/")
           });
@@ -107,6 +116,7 @@ export default class CreateUser extends Component {
             last_name: '',
             email: '',
             password:'',
+            password2:'',
             role:'admin',
             todo_completed: false
         })
@@ -161,6 +171,14 @@ export default class CreateUser extends Component {
                         className="form-control"
                         value={this.state.password}
                         onChange={this.onChangePassword}
+                        />
+                </div>
+                <div className="form-group">
+                    <label>Confirm Password:</label>
+                    <input type="text"
+                        className="form-control"
+                        value={this.state.password2}
+                        onChange={this.onChangePassword2}
                         />
                 </div>
                 <div>

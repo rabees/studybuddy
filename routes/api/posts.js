@@ -40,10 +40,10 @@ router.get('/:id', (req, res) => {
 // @desc    Create post
 // @access  Private
 router.post('/', passport.authenticate('jwt', { session: false }), (req, res) => {
-    const { errors, isValid} = validatePostInput(req.body);
+    const { errors, isValid } = validatePostInput(req.body);
 
     // Check validation
-    if(!isValid) {
+    if (!isValid) {
         // If any errors, send 400 with errors object
         return res.status(400).json(errors);
     }
@@ -92,7 +92,8 @@ router.put('/edit/:id', passport.authenticate('jwt', { session: false }), (req, 
         post.save().then(post => res.json(post));
       })
       .catch(err => res.status(500).json(err));
-  });  
+  }); 
+
 
 // @route   DELETE api/posts/:id
 // @desc    Delete post

@@ -5,7 +5,11 @@ const Schema = mongoose.Schema;
 const PostSchema = ({
     user: {
         type: Schema.Types.ObjectId,
-        ref: 'users'
+        ref: 'Student'
+    },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'Instructor'
     },
     text: {
         type: String,
@@ -24,15 +28,23 @@ const PostSchema = ({
         {
             user: {
                 type: Schema.Types.ObjectId,
-                ref: 'users' 
-            }
+                ref: 'Student'
+            },
+            user: {
+                type: Schema.Types.ObjectId,
+                ref: 'Instructor'
+            },
         }
     ],
     comments: [
         {
             user: {
                 type: Schema.Types.ObjectId,
-                ref: 'users' 
+                ref: 'Student'
+            },
+            user: {
+                type: Schema.Types.ObjectId,
+                ref: 'Instructor'
             },
             text: {
                 type: String,

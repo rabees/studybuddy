@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
-const users = require("./routes/api/users");
+// const users = require("./routes/api/users");
 const group = require("./routes/api/group");
 const category = require("./routes/api/category");
 const enroll = require("./routes/api/enrollRoute");
@@ -14,6 +14,9 @@ var cors = require('cors');
 const profile = require('./routes/api/profile');
 const posts = require('./routes/api/posts');
 const appointmentRoutes = require("./routes/api/appointment");
+const instructor = require("./routes/api/instructor");
+const student = require("./routes/api/student");
+const admin = require("./routes/api/admin");
 
 const app = express();
 
@@ -42,7 +45,9 @@ app.get("/", (req, res) => res.send("Hello World"));
 //Use routes
 app.use(cors());
 app.options("*", cors()); 
-app.use(users);
+app.use(student);
+app.use(admin);
+app.use(instructor);
 app.use(group);
 app.use(category);
 app.use(resource);

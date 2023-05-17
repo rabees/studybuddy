@@ -16,24 +16,49 @@ export default class UserEdit extends Component {
 
     // To retrieve the todos data from the database --> use the componentDidMount lifecycle method
     componentDidMount() {
-       
-        axios.get('http://localhost:5000/user?id='+this.props.match.params.id)
+      const id = this.props.match.params.id;
+    
+      axios.get(`http://localhost:5000/student?id=${id}`)
+        .then(response => {
+          if (response.data) {
+            this.setState({ todos: response.data });
+            return;
+          }
+          
+          axios.get(`http://localhost:5000/instructor?id=${id}`)
             .then(response => {
+              if (response.data) {
                 this.setState({ todos: response.data });
+                return;
+              }
+              
+              axios.get(`http://localhost:5000/admin?id=${id}`)
+                .then(response => {
+                  if (response.data) {
+                    this.setState({ todos: response.data });
+                  }
+                })
+                .catch(error => {
+                  console.log(error);
+                });
             })
-            .catch(function (error){
-                console.log(error);
-            })
-
-            axios.get('http://localhost:5000/showroles/')
-            .then(response => {
-                this.setState({ Roles: response.data });
-            })
-            .catch(function (error){
-                console.log(error);
-            })
-        
+            .catch(error => {
+              console.log(error);
+            });
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    
+      axios.get('http://localhost:5000/showroles/')
+        .then(response => {
+          this.setState({ Roles: response.data });
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
+    
 
     RoleList() {
       return this.state.Roles.map(function(currentTodo, i){
@@ -50,13 +75,42 @@ export default class UserEdit extends Component {
     
       toggleOpen = () => this.setState({ isOpen: !this.state.isOpen });
     
-    delete(id){
-      console.log(id);
-      axios.delete('http://localhost:5000/user?id='+this.props.match.params.id)
-        .then((result) => {
-          this.props.history.push("/allusers/")
-        });
-    }
+      delete(id) {
+        console.log(id);
+        const userId = this.props.match.params.id;
+      
+        axios.delete(`http://localhost:5000/student?id=${userId}`)
+          .then((result) => {
+            if (result.data) {
+              this.props.history.push("/allusers/");
+              return;
+            }
+      
+            axios.delete(`http://localhost:5000/instructor?id=${userId}`)
+              .then((result) => {
+                if (result.data) {
+                  this.props.history.push("/allusers/");
+                  return;
+                }
+      
+                axios.delete(`http://localhost:5000/admin?id=${userId}`)
+                  .then((result) => {
+                    if (result.data) {
+                      this.props.history.push("/allusers/");
+                    }
+                  })
+                  .catch(error => {
+                    console.log(error);
+                  });
+              })
+              .catch(error => {
+                console.log(error);
+              });
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      }
 
     handleChange(e) {
       var whoIsChecked = {...this.state.whoIsChecked}
@@ -65,16 +119,45 @@ export default class UserEdit extends Component {
       
  }
 
-    onSubmit = (e) => {
-        e.preventDefault();
-    
-        const { first_name, last_name, email, password, role } = this.state.todos;
-        console.log(this.state.todos)
-        axios.put('http://localhost:5000/user?id='+this.props.match.params.id, {first_name, last_name, email, password, role})
+ onSubmit = (e) => {
+  e.preventDefault();
+
+  const id = this.props.match.params.id;
+  const { first_name, last_name, email, password, role } = this.state.todos;
+  console.log(this.state.todos);
+
+  axios.put(`http://localhost:5000/student?id=${id}`, { first_name, last_name, email, password, role })
+    .then((result) => {
+      if (result.data) {
+        this.props.history.push("/allusers/");
+        return;
+      }
+      
+      axios.put(`http://localhost:5000/instructor?id=${id}`, { first_name, last_name, email, password, role })
         .then((result) => {
-          this.props.history.push("/allusers/")
+          if (result.data) {
+            this.props.history.push("/allusers/");
+            return;
+          }
+          
+          axios.put(`http://localhost:5000/admin?id=${id}`, { first_name, last_name, email, password, role })
+            .then((result) => {
+              if (result.data) {
+                this.props.history.push("/allusers/");
+              }
+            })
+            .catch(error => {
+              console.log(error);
+            });
+        })
+        .catch(error => {
+          console.log(error);
         });
-    }
+    })
+    .catch(error => {
+      console.log(error);
+    });
+}
   
     render() {
       // const menuClass = `dropdown-menu${this.state.isOpen ? " show" : ""}`;

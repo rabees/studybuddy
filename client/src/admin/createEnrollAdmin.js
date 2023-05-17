@@ -3,7 +3,7 @@ import NavBar from "../components/NavBar";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const ShowUser = props => (
+const ShowStudent = props => (
   <option selected="selected" key={props.todo.email} value={props.todo.email}>
     {props.todo.email}
   </option>
@@ -20,7 +20,7 @@ export default class CreateEnroll extends Component {
 
     /** Setting the initial state of the component by assigned an object to this.state **/
     this.state = {
-      User: [],
+      Student: [],
       Group: []
     };
 
@@ -42,9 +42,9 @@ export default class CreateEnroll extends Component {
       });
 
     axios
-      .get("http://localhost:5000/users/")
+      .get("http://localhost:5000/students/")
       .then(response => {
-        this.setState({ User: response.data });
+        this.setState({ Student: response.data });
       })
       .catch(function(error) {
         console.log(error);
@@ -58,10 +58,10 @@ export default class CreateEnroll extends Component {
     });
   }
 
-  UserList() {
-    return this.state.User.map(function(currentTodo, i) {
+  StudentList() {
+    return this.state.Student.map(function(currentTodo, i) {
       //  console.log(currentTodo.categoryName)
-      return <ShowUser todo={currentTodo} key={i} />;
+      return <ShowStudent todo={currentTodo} key={i} />;
     });
   }
 
@@ -124,7 +124,7 @@ export default class CreateEnroll extends Component {
                   className="h3 mb-3 font-weight-bold"
                   style={{ textDecoration: "underline" }}
                 >
-                  Create New User
+                  Create New Student
                 </h1>
                 <br />
 
@@ -144,7 +144,7 @@ export default class CreateEnroll extends Component {
                     onChange={this.onChangeStudent}
                     value={this.state.student}
                   >
-                    {this.UserList()}
+                    {this.StudentList()}
                     {/* <option value="Data Structures">DS</option> */}
                   </select>
                 </div>
@@ -175,7 +175,7 @@ export default class CreateEnroll extends Component {
                 <br />
                 <button
                   type="submit"
-                  value="Add User"
+                  value="Add Student"
                   className="btn btn-lg btn-info btn-block"
                 >
                   Add Enrollment

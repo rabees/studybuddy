@@ -1,13 +1,13 @@
 let enrollmodel = require("../../models/Enrollment");
 let groupmodel = require("../../models/Group");
-let usermodel = require("../../models/User");
+let studentmodel = require("../../models/Student");
 let express = require("express");
 let router = express.Router();
 
 router.get("/enrollments", (req, res, next) => {
   enrollmodel
     .find()
-    .populate({ path: "student", model: "users" })
+    .populate({ path: "student", model: "Student" })
     .populate({ path: "group", model: "groups", select: "groupName" })
 
     .exec(function(err, results) {
@@ -55,9 +55,9 @@ router.post("/enroll/add", (req, res) => {
     console.log("Request body is missing");
     return res.status(400).send("request body is missing");
   }
-  usermodel.find({ email: req.body.student }, function(error, cat) {
+  studentmodel.find({ email: req.body.student }, function(error, cat) {
     if (!error && cat && cat.length > 0) {
-      console.log("User model: ", cat);
+      console.log("Student model: ", cat);
       req.body.student = cat[0]._id;
     }
     groupmodel.find({ groupName: req.body.group }, function(error, cat) {

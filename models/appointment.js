@@ -4,38 +4,34 @@ const { ObjectId } = mongoose.Schema;
 const SlotSchema = new mongoose.Schema({
   slotTime: String,
   slotDate: String,
-  createdAt: Date,
+  instructor: {
+    type: ObjectId,
+    ref: "Instructor",
+    required: true
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  }
 });
 
 const Slot = mongoose.model("Slot", SlotSchema);
 
 const AppointmentSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-    maxlength: 32,
-    trim: true,
+  student: {
+    type: ObjectId,
+    ref: "Student",
+    required: true
   },
-  email: {
-    type: String,
-    required: true,
-    trim: true,
-    unique: true,
-  },
-  phone: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  slots: {
+  slot: {
     type: ObjectId,
     ref: "Slot",
+    required: true
   },
-  user: {
-    type: ObjectId,
-    ref: "users",
-  },
-  createdAt: Date,
+  createdAt: {
+    type: Date,
+    default: Date.now
+  }
 });
 
 const Appointment = mongoose.model("Appointment", AppointmentSchema);

@@ -8,8 +8,10 @@ import jwt_decode from "jwt-decode";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from '@stripe/react-stripe-js';
 
-import Login from "./auth/Login";
-import Register from "./auth/Register";
+// import Login from "./auth/LoginAdmin";
+import RegisterInstructor from "./auth/RegisterInstructor";
+import RegisterStudent from "./auth/RegisterStudent";
+import RegisterAdmin from "./auth/RegisterAdmin";
 import UserList from "./admin/showallusers";
 import CreateUser from "./admin/createuser";
 import EditUser from "./admin/edituser";
@@ -61,6 +63,9 @@ import ScheduleForm from "./components/schedule/ScheduleForm";
 import ISchedule from "./components/schedule/ISchedule";
 import IScheduleForm from "./components/schedule/IScheduleForm";
 import Payment from "./components/payment/Payment";
+import LoginAdmin from "./auth/LoginAdmin";
+import LoginInstructor from "./auth/LoginInstructor";
+import LoginStudent from "./auth/LoginStudent";
 
 //check for token to avoid state destroy on reload
 if (localStorage.jwtToken) {
@@ -138,13 +143,33 @@ class Root extends Component {
             />
             <Route
               exact
-              path={`${process.env.PUBLIC_URL}/login/:role`}
-              component={Login}
+              path={`${process.env.PUBLIC_URL}/login/admin`}
+              component={LoginAdmin}
             />
             <Route
               exact
-              path={`${process.env.PUBLIC_URL}/register/:role`}
-              component={Register}
+              path={`${process.env.PUBLIC_URL}/login/student`}
+              component={LoginStudent}
+            />
+            <Route
+              exact
+              path={`${process.env.PUBLIC_URL}/login/instructor`}
+              component={LoginInstructor}
+            />
+            <Route
+              exact
+              path={`${process.env.PUBLIC_URL}/register/student`}
+              component={RegisterStudent}
+            />
+            <Route
+              exact
+              path={`${process.env.PUBLIC_URL}/register/instructor`}
+              component={RegisterInstructor}
+            />
+            <Route
+              exact
+              path={`${process.env.PUBLIC_URL}/register/admin`}
+              component={RegisterAdmin}
             />
             <PrivateRoute
               exact
@@ -236,7 +261,11 @@ class Root extends Component {
               path={`${process.env.PUBLIC_URL}/add-experience`}
               component={AddExperience}
             />
-
+            <PrivateRoute
+              exact
+              path={`${process.env.PUBLIC_URL}/add-education`}
+              component={AddEducation}
+            />
             <Route
               exact
               path={`${process.env.PUBLIC_URL}/finalprofiles`}
@@ -290,11 +319,6 @@ class Root extends Component {
               component={Payment} 
             />
             </Elements>
-            <PrivateRoute
-              exact
-              path={`${process.env.PUBLIC_URL}/add-education`}
-              component={AddEducation}
-            />
             <PrivateRoute component={NoMAtch} />
           </Switch>
         </BrowserRouter>

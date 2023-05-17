@@ -11,7 +11,7 @@ const GroupSchema = new Schema(
       type: String,
       required: true
     },
-    instructor: { type: Schema.Types.ObjectId, ref: "User" },
+    instructor: { type: Schema.Types.ObjectId, ref: "Instructor" },
     category: { type: Schema.Types.String, ref: "Category" }
   },
   { timestamps: { createdAt: "created_at" } }

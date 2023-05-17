@@ -8,6 +8,33 @@ import VideoDetail from "./VideoDetail";
 // import SearchBar from "./SearchBar";
 
 class BlogDetailsLeftSidebar extends Component {
+  onTextSubmit = text => {
+    // Handle the form submission based on the submitted text
+    console.log("Submitted text:", text);
+  
+    // Perform the necessary actions
+    // For example, you can make an API call using axios
+    axios.get("http://localhost:5000/resources/search", {
+      params: {
+        q: text
+      }
+    })
+      .then(response => {
+        // Handle the response if needed
+        console.log("API response:", response.data);
+        // Update the state or perform any other actions
+        this.setState({
+          videos: response.data,
+          selectedVideo: response.data[0]
+        });
+      })
+      .catch(error => {
+        // Handle the error if needed
+        console.error("API error:", error);
+        // Update the state or perform any other error handling actions
+      });
+  };  
+  
   constructor(props) {
     super(props);
     this.state = {

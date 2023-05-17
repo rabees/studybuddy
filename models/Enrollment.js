@@ -8,7 +8,7 @@ const EnrollmentSchema = new Schema(
       default: 1,
       required: false
     },
-    student: { type: Schema.Types.ObjectId, ref: "User" },
+    student: { type: Schema.Types.ObjectId, ref: "Student" },
     group: { type: Schema.Types.ObjectId, ref: "Group" },
     approved: {
       type: Boolean,
