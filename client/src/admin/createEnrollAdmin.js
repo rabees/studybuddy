@@ -33,7 +33,7 @@ export default class CreateEnroll extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:5000/groups/")
+      .get("https://studybuddypakistan.herokuapp.com/groups/")
       .then(response => {
         this.setState({ Group: response.data });
       })
@@ -42,7 +42,7 @@ export default class CreateEnroll extends Component {
       });
 
     axios
-      .get("http://localhost:5000/students/")
+      .get("https://studybuddypakistan.herokuapp.com/students/")
       .then(response => {
         this.setState({ Student: response.data });
       })
@@ -92,7 +92,7 @@ export default class CreateEnroll extends Component {
       todo_completed: this.state.todo_completed
     };
 
-    axios.post("http://localhost:5000/enroll/add/", newTodo).then(result => {
+    axios.post("https://studybuddypakistan.herokuapp.com/enroll/add/", newTodo).then(result => {
       this.props.history.push("/EnrollmentList/");
     });
 

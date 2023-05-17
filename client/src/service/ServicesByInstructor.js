@@ -10,7 +10,7 @@ class Services extends Component {
   async componentDidMount() {
     const response = await axios
       .get(
-        "http://localhost:5000/groupbyinstructor?id=" +
+        "https://studybuddypakistan.herokuapp.com/groupbyinstructor?id=" +
           this.props.match.params.id
       )
       .then(result => {

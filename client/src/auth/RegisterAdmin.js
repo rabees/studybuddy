@@ -44,7 +44,7 @@ class RegisterAdmin extends Component {
     // console.log(newAdmin);
 
     axios
-    .post("http://localhost:5000/admins/register", newAdmin)
+    .post("https://studybuddypakistan.herokuapp.com/admins/register", newAdmin)
     .then(res => {
       console.log(res.data);
       this.props.history.push("/login/admin");

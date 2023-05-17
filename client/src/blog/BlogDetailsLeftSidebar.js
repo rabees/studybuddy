@@ -14,7 +14,7 @@ class BlogDetailsLeftSidebar extends Component {
   
     // Perform the necessary actions
     // For example, you can make an API call using axios
-    axios.get("http://localhost:5000/resources/search", {
+    axios.get("https://studybuddypakistan.herokuapp.com/resources/search", {
       params: {
         q: text
       }
@@ -66,7 +66,7 @@ class BlogDetailsLeftSidebar extends Component {
     };
     if (this.state.buttonclass === "btn btn-success") {
       axios
-        .post("http://localhost:5000/enrollbystudent/add", newTodo)
+        .post("https://studybuddypakistan.herokuapp.com/enrollbystudent/add", newTodo)
         .then(result => {
           toast.success("Added successfully");
         })
@@ -87,10 +87,10 @@ class BlogDetailsLeftSidebar extends Component {
     }
 
     const response = await axios
-      .get("http://localhost:5000/resources?id=" + this.props.match.params.id)
+      .get("https://studybuddypakistan.herokuapp.com/resources?id=" + this.props.match.params.id)
       .then(result => {
         console.log(
-          "http://localhost:5000/checkenrollment?id=" +
+          "https://studybuddypakistan.herokuapp.com/checkenrollment?id=" +
             this.state.user +
             "&&groupid=" +
             this.props.match.params.id
@@ -98,7 +98,7 @@ class BlogDetailsLeftSidebar extends Component {
         // eslint-disable-next-line
         const responseEnrolled = axios
           .get(
-            "http://localhost:5000/checkenrollment?id=" +
+            "https://studybuddypakistan.herokuapp.com/checkenrollment?id=" +
               this.state.user +
               "&&groupid=" +
               this.props.match.params.id

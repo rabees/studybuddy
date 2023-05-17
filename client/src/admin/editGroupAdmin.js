@@ -16,7 +16,7 @@ export default class EditGroup extends Component{
     }
     componentDidMount() {
        
-        axios.get('http://localhost:5000/group?id='+this.props.match.params.id)
+        axios.get('https://studybuddypakistan.herokuapp.com/group?id='+this.props.match.params.id)
             .then(response => {
                 this.setState({ todos: response.data });
             })
@@ -24,7 +24,7 @@ export default class EditGroup extends Component{
                 console.log(error);
             })
 
-        axios.get('http://localhost:5000/categories/')
+        axios.get('https://studybuddypakistan.herokuapp.com/categories/')
         .then(response => {
             this.setState({ Cat: response.data });
         })
@@ -56,7 +56,7 @@ export default class EditGroup extends Component{
      }
      delete(id){
       console.log(id);
-      axios.delete('http://localhost:5000/group?id='+this.props.match.params.id)
+      axios.delete('https://studybuddypakistan.herokuapp.com/group?id='+this.props.match.params.id)
         .then((result) => {
           this.props.history.push("/ShowGroupList/")
         });
@@ -67,7 +67,7 @@ export default class EditGroup extends Component{
         
             const { groupName, groupDescription, category, instructor } = this.state.todos;
             console.log(this.state.todos)
-            axios.put('http://localhost:5000/group?id='+this.state.todos._id, {groupName, groupDescription, category, instructor})
+            axios.put('https://studybuddypakistan.herokuapp.com/group?id='+this.state.todos._id, {groupName, groupDescription, category, instructor})
             .then((result) => {
               this.props.history.push("/ShowGroupList/")
             });

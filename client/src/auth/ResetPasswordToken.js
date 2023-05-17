@@ -39,7 +39,7 @@ export default class ResetPasswordToken extends Component {
 
     // Send a request to the server to reset the password
     axios
-      .post("http://localhost:5000/reset-password", {
+      .post("https://studybuddypakistan.herokuapp.com/reset-password", {
         resetToken,
         newPassword,
       })

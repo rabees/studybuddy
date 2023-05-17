@@ -34,7 +34,7 @@ export default class CreateUser extends Component {
     }
 
     componentDidMount() {
-            axios.get('http://localhost:5000/showroles/')
+            axios.get('https://studybuddypakistan.herokuapp.com/showroles/')
             .then(response => {
                 this.setState({ Roles: response.data });
             })
@@ -105,7 +105,7 @@ export default class CreateUser extends Component {
             todo_completed: this.state.todo_completed
         };
 
-        axios.post('http://localhost:5000/admin', newTodo)
+        axios.post('https://studybuddypakistan.herokuapp.com/admin', newTodo)
         .then((result) => {
             this.props.history.push("/allusers/")
           });

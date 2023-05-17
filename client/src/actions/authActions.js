@@ -9,7 +9,7 @@ export const registerInstructor = (instructorData, history) => dispatch => {
   //so we need to use thunk middleware
 
   axios
-    .post("http://localhost:5000/instructors/register", instructorData)
+    .post("https://studybuddypakistan.herokuapp.com/instructors/register", instructorData)
     .then(res => history.push("/login/instructor"))
     .catch(err =>
       dispatch({
@@ -25,7 +25,7 @@ export const registerStudent = (studentData, history) => dispatch => {
   //so we need to use thunk middleware
 
   axios
-    .post("http://localhost:5000/students/register", studentData)
+    .post("https://studybuddypakistan.herokuapp.com/students/register", studentData)
     .then(res => history.push("/login/student"))
     .catch(err =>
       dispatch({
@@ -41,7 +41,7 @@ export const registerAdmin = (adminData, history) => dispatch => {
   //so we need to use thunk middleware
 
   axios
-    .post("http://localhost:5000/admins/register", adminData)
+    .post("https://studybuddypakistan.herokuapp.com/admins/register", adminData)
     .then(res => history.push("/login/admin"))
     .catch(err =>
       dispatch({
@@ -55,7 +55,7 @@ export const registerAdmin = (adminData, history) => dispatch => {
 //Login - Get instructor token , //loginInstructor action creator
 export const loginInstructor = instructorData => dispatch => {
   axios
-    .post("http://localhost:5000/instructors/login", instructorData)
+    .post("https://studybuddypakistan.herokuapp.com/instructors/login", instructorData)
     .then(res => {
       // console.log(res);
       //save token to local storage
@@ -81,7 +81,7 @@ export const loginInstructor = instructorData => dispatch => {
 //Login - Get student token , //loginStudent action creator
 export const loginStudent = studentData => dispatch => {
   axios
-    .post("http://localhost:5000/students/login", studentData)
+    .post("https://studybuddypakistan.herokuapp.com/students/login", studentData)
     .then(res => {
       // console.log(res);
       //save token to local storage
@@ -107,7 +107,7 @@ export const loginStudent = studentData => dispatch => {
 //Login - Get admin token , //loginAdmin action creator
 export const loginAdmin = adminData => dispatch => {
   axios
-    .post("http://localhost:5000/admins/login", adminData)
+    .post("https://studybuddypakistan.herokuapp.com/admins/login", adminData)
     .then(res => {
       // console.log(res);
       //save token to local storage

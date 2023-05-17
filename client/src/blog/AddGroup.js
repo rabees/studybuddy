@@ -27,7 +27,7 @@ export default class AddGroup extends Component {
   componentDidMount() {
     //to get data from mongo link
     axios
-      .get("http://localhost:5000/categories/")
+      .get("https://studybuddypakistan.herokuapp.com/categories/")
       .then(response => {
         // console.log(response.data);
         this.setState({
@@ -81,7 +81,7 @@ export default class AddGroup extends Component {
       // todo_completed: this.state.todo_completed
     };
     axios
-      .post("http://localhost:5000/group/add", newTodo)
+      .post("https://studybuddypakistan.herokuapp.com/group/add", newTodo)
 
       .then(result => {
         this.props.history.push("/add-resource/" + this.props.match.params.id);

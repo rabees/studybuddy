@@ -33,7 +33,7 @@ class RegisterStudent extends Component {
 
   googleAuth = () => {
 		window.open(
-			`http://localhost:5000/google/callback`,
+			`https://studybuddypakistan.herokuapp.com/google/callback`,
 			"_self"
 		);
 	};
@@ -54,7 +54,7 @@ class RegisterStudent extends Component {
     // console.log(newStudent);
 
     axios
-    .post("http://localhost:5000/students/register", newStudent)
+    .post("https://studybuddypakistan.herokuapp.com/students/register", newStudent)
     .then(res => {
       console.log(res.data);
       this.props.history.push("/login/student");
@@ -219,7 +219,7 @@ class RegisterStudent extends Component {
                     <div className="saprator">
                       <span>OR</span>
                     </div>
-                    <button className="btn btn-googleplus mb-2 mr-2" onClick={this.googleAuth}>
+                    <button className="btn btn-googleplus mb-2 mr-2">
                       <i className="fab fa-google-plus-g" />
                       Google
                     </button>

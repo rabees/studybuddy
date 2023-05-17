@@ -45,7 +45,7 @@ class Register extends Component {
     // console.log(newUser);
 
     axios
-    .post("http://localhost:5000/users/register", newUser)
+    .post("https://studybuddypakistan.herokuapp.com/users/register", newUser)
     .then(res => {
       console.log(res.data);
       this.props.history.push("/login/" + this.props.match.params.role);

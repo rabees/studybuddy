@@ -3,7 +3,6 @@ import "./style.css";
 import classnames from "classnames";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-// import GoogleLoginButton from 'react-google-login-button';
 import { loginStudent } from "../actions/authActions";
 import NavBar from '../components/NavBar';
 
@@ -27,7 +26,7 @@ class LoginStudent extends Component {
 
   googleAuth = () => {
 		window.open(
-			`http://localhost:5000/google/callback`,
+			`https://studybuddypakistan.herokuapp.com/google/callback`,
 			"_self"
 		);
 	};
@@ -132,7 +131,7 @@ class LoginStudent extends Component {
                     <div className="saprator">
                       <span>OR</span>
                     </div> 
-                    <button className="btn btn-googleplus mb-2 mr-2" onClick={this.googleAuth}>
+                    <button className="btn btn-googleplus mb-2 mr-2">
                       <i className="fab fa-google-plus-g" />
                       Google
                     </button>

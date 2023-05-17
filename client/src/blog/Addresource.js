@@ -30,7 +30,7 @@ export default class Upload extends Component {
   componentDidMount() {
     axios
       .get(
-        "http://localhost:5000/groupbyinstructor?id=" +
+        "https://studybuddypakistan.herokuapp.com/groupbyinstructor?id=" +
           this.props.match.params.id
       )
       .then(response => {
@@ -164,7 +164,7 @@ export default class Upload extends Component {
   
     console.log(data);
     axios
-      .post("http://localhost:5000/resources/localupload", data, {
+      .post("https://studybuddypakistan.herokuapp.com/resources/localupload", data, {
         onUploadProgress: ProgressEvent => {
           this.setState({
             loaded: (ProgressEvent.loaded / ProgressEvent.total) * 100

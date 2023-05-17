@@ -21,7 +21,7 @@ export default class Forgot extends Component {
 
     // Send a request to the server for resetting the password
     axios
-    .post("http://localhost:5000/reset-password", { email })
+    .post("https://studybuddypakistan.herokuapp.com/reset-password", { email })
     .then((res) => {
       const { resetToken } = res.data;
       console.log(res.data);
@@ -77,7 +77,7 @@ export default class Forgot extends Component {
                   <p className="mb-0 text-muted">
                     Don’t have an account?{" "}
                     <a
-                      href={`${process.env.PUBLIC_URL}/register`}
+                      href={`${process.env.PUBLIC_URL}/register/student`}
                       className="f-w-400"
                     >
                       Signup

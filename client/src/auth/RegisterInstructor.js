@@ -18,7 +18,6 @@ class RegisterInstructor extends Component {
       email: "",
       password: "",
       password2: "",
-      city: "",
       role: "instructor",
       errors: {}
     };
@@ -30,7 +29,7 @@ class RegisterInstructor extends Component {
 
   googleAuth = () => {
 		window.open(
-			`http://localhost:5000/google/callback`,
+			`https://studybuddypakistan.herokuapp.com/google/callback`,
 			"_self"
 		);
 	};
@@ -49,14 +48,13 @@ class RegisterInstructor extends Component {
       email: this.state.email,
       password: this.state.password,
       password2: this.state.password2,
-      city: this.state.city,
       role:  this.state.role
     };
 
     // console.log(newInstructor);
 
     axios
-    .post("http://localhost:5000/instructors/register", newInstructor)
+    .post("https://studybuddypakistan.herokuapp.com/instructors/register", newInstructor)
     .then(res => {
       console.log(res.data);
       this.props.history.push("/login/instructor");
@@ -157,26 +155,6 @@ class RegisterInstructor extends Component {
                     <div className="input-group mb-2">
                       <div className="input-group-prepend">
                         <span className="input-group-text">
-                          <i className="feather icon-user" />
-                        </span>
-                      </div>
-                      <input
-                        type="text"
-                        name="city"
-                        className={classnames("form-control", {
-                          "is-invalid": errors.city
-                        })}
-                        placeholder="City"
-                        value={this.state.city}
-                        onChange={this.onChange}
-                      />
-                      {errors.city && (
-                        <div className="invalid-feedback">{errors.city}</div>
-                      )}
-                    </div>
-                    <div className="input-group mb-2">
-                      <div className="input-group-prepend">
-                        <span className="input-group-text">
                           <i className="feather icon-mail" />
                         </span>
                       </div>
@@ -241,7 +219,7 @@ class RegisterInstructor extends Component {
                     <div className="saprator">
                       <span>OR</span>
                     </div>
-                    <button className="btn btn-googleplus mb-2 mr-2" onClick={this.googleAuth}>
+                    <button className="btn btn-googleplus mb-2 mr-2">
                       <i className="fab fa-google-plus-g" />
                       Google
                     </button>

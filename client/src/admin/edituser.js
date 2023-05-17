@@ -18,21 +18,21 @@ export default class UserEdit extends Component {
     componentDidMount() {
       const id = this.props.match.params.id;
     
-      axios.get(`http://localhost:5000/student?id=${id}`)
+      axios.get(`https://studybuddypakistan.herokuapp.com/student?id=${id}`)
         .then(response => {
           if (response.data) {
             this.setState({ todos: response.data });
             return;
           }
           
-          axios.get(`http://localhost:5000/instructor?id=${id}`)
+          axios.get(`https://studybuddypakistan.herokuapp.com/instructor?id=${id}`)
             .then(response => {
               if (response.data) {
                 this.setState({ todos: response.data });
                 return;
               }
               
-              axios.get(`http://localhost:5000/admin?id=${id}`)
+              axios.get(`https://studybuddypakistan.herokuapp.com/admin?id=${id}`)
                 .then(response => {
                   if (response.data) {
                     this.setState({ todos: response.data });
@@ -50,7 +50,7 @@ export default class UserEdit extends Component {
           console.log(error);
         });
     
-      axios.get('http://localhost:5000/showroles/')
+      axios.get('https://studybuddypakistan.herokuapp.com/showroles/')
         .then(response => {
           this.setState({ Roles: response.data });
         })
@@ -79,21 +79,21 @@ export default class UserEdit extends Component {
         console.log(id);
         const userId = this.props.match.params.id;
       
-        axios.delete(`http://localhost:5000/student?id=${userId}`)
+        axios.delete(`https://studybuddypakistan.herokuapp.com/student?id=${userId}`)
           .then((result) => {
             if (result.data) {
               this.props.history.push("/allusers/");
               return;
             }
       
-            axios.delete(`http://localhost:5000/instructor?id=${userId}`)
+            axios.delete(`https://studybuddypakistan.herokuapp.com/instructor?id=${userId}`)
               .then((result) => {
                 if (result.data) {
                   this.props.history.push("/allusers/");
                   return;
                 }
       
-                axios.delete(`http://localhost:5000/admin?id=${userId}`)
+                axios.delete(`https://studybuddypakistan.herokuapp.com/admin?id=${userId}`)
                   .then((result) => {
                     if (result.data) {
                       this.props.history.push("/allusers/");
@@ -126,21 +126,21 @@ export default class UserEdit extends Component {
   const { first_name, last_name, email, password, role } = this.state.todos;
   console.log(this.state.todos);
 
-  axios.put(`http://localhost:5000/student?id=${id}`, { first_name, last_name, email, password, role })
+  axios.put(`https://studybuddypakistan.herokuapp.com/student?id=${id}`, { first_name, last_name, email, password, role })
     .then((result) => {
       if (result.data) {
         this.props.history.push("/allusers/");
         return;
       }
       
-      axios.put(`http://localhost:5000/instructor?id=${id}`, { first_name, last_name, email, password, role })
+      axios.put(`https://studybuddypakistan.herokuapp.com/instructor?id=${id}`, { first_name, last_name, email, password, role })
         .then((result) => {
           if (result.data) {
             this.props.history.push("/allusers/");
             return;
           }
           
-          axios.put(`http://localhost:5000/admin?id=${id}`, { first_name, last_name, email, password, role })
+          axios.put(`https://studybuddypakistan.herokuapp.com/admin?id=${id}`, { first_name, last_name, email, password, role })
             .then((result) => {
               if (result.data) {
                 this.props.history.push("/allusers/");

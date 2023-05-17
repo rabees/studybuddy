@@ -37,7 +37,7 @@ export default class UserList extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:5000/students/')
+    axios.get('https://studybuddypakistan.herokuapp.com/students/')
       .then(response => {
         this.setState({ students: response.data });
       })
@@ -45,14 +45,14 @@ export default class UserList extends Component {
         console.log(error);
       });
 
-    axios.get('http://localhost:5000/instructors/')
+    axios.get('https://studybuddypakistan.herokuapp.com/instructors/')
       .then(response => {
         this.setState({ instructors: response.data });
       })
       .catch(function (error) {
         console.log(error);
       });
-    axios.get('http://localhost:5000/admins/')
+    axios.get('https://studybuddypakistan.herokuapp.com/admins/')
       .then(response => {
         this.setState({ admins: response.data });
       })

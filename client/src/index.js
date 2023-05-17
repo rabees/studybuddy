@@ -106,7 +106,7 @@ class Root extends Component {
 
   getUser = async () => {
     try {
-      const url = `http://localhost:5000/login/success`;
+      const url = `https://studybuddypakistan.herokuapp.com/login/success`;
       const { data } = await axios.get(url, { withCredentials: true });
       this.setState({ user: data.user._json });
     } catch (err) {
