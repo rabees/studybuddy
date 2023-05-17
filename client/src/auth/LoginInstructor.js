@@ -3,7 +3,6 @@ import "./style.css";
 import classnames from "classnames";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-// import GoogleLoginButton from 'react-google-login-button';
 import { loginInstructor } from "../actions/authActions";
 import NavBar from '../components/NavBar';
 
@@ -18,7 +17,15 @@ class LoginInstructor extends Component {
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.googleAuth = this.googleAuth.bind(this);
   }
+
+  googleAuth = () => {
+		window.open(
+			`http://localhost:5000/google/callback`,
+			"_self"
+		);
+	};
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
@@ -121,17 +128,13 @@ class LoginInstructor extends Component {
                         </div>
                       )}
                     </div>
-                    {/* <div className="saprator">
+                    <div className="saprator">
                       <span>OR</span>
-                    </div> */}
-                    {/* <button className="btn btn-facebook mb-2 mr-2">
-                      <i className="fab fa-facebook-f" />
-                      facebook
-                    </button> */}
-      {/* //               <button className="btn btn-twitter mb-2 mr-2">
-      //                 <i className="fab fa-twitter" />
-      //                 Twitter
-      //               </button> */}
+                    </div>
+                    <button className="btn btn-googleplus mb-2 mr-2" onClick={this.googleAuth}>
+                      <i className="fab fa-google-plus-g" />
+                      Google
+                    </button>
                          <div className="form-group text-left mt-2">
                          <div className="checkbox checkbox-fill d-inline">
                          <input
@@ -140,7 +143,6 @@ class LoginInstructor extends Component {
                           id="checkbox-fill-a1"
                           checked=""
                         />
-
                         <input
                           type="checkbox"
                           name="checkbox-fill-2"
@@ -155,7 +157,7 @@ class LoginInstructor extends Component {
                       Login
                     </button>
                   </form>
-                  {/* <p className="mb-2 text-muted">
+                  <p className="mb-2 text-muted">
                     Forgot password?{" "}
                     <a
                       href={`${process.env.PUBLIC_URL}/forgot-password`}
@@ -163,7 +165,7 @@ class LoginInstructor extends Component {
                     >
                       Reset
                     </a>
-                  </p> */}
+                  </p>
                   <p className="mb-0 text-muted">
                     Don’t have an account?{" "}
                     <a

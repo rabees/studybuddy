@@ -25,7 +25,15 @@ class RegisterInstructor extends Component {
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.googleAuth = this.googleAuth.bind(this);
   }
+
+  googleAuth = () => {
+		window.open(
+			`http://localhost:5000/google/callback`,
+			"_self"
+		);
+	};
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
@@ -230,17 +238,18 @@ class RegisterInstructor extends Component {
                         </div>
                       )}
                     </div>
-                    {/* <div className="saprator">
+                    <div className="saprator">
                       <span>OR</span>
-                    </div> */}
+                    </div>
+                    <button className="btn btn-googleplus mb-2 mr-2" onClick={this.googleAuth}>
+                      <i className="fab fa-google-plus-g" />
+                      Google
+                    </button>
                     {/* <button className="btn btn-facebook mb-2 mr-2">
                       <i className="fab fa-facebook-f" />
                       facebook
                     </button>
-                    <button className="btn btn-googleplus mb-2 mr-2">
-                      <i className="fab fa-google-plus-g" />
-                      Google
-                    </button>
+                    
                     <button className="btn btn-twitter mb-2 mr-2">
                       <i className="fab fa-twitter" />
                       Twitter

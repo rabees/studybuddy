@@ -3,7 +3,6 @@ import "./style.css";
 import classnames from "classnames";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-// import GoogleLoginButton from 'react-google-login-button';
 import { loginUser } from "../actions/authActions";
 import NavBar from '../components/NavBar';
 
@@ -54,9 +53,6 @@ class Login extends Component {
 
   render() {
     const { errors } = this.state;
-    // const responseGoogle = (response) => {
-    //   console.log(response);
-    // }
     return (
       <div>
         <NavBar/>

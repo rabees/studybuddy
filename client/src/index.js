@@ -7,6 +7,7 @@ import setAuthToken from "./utils/setAuthToken";
 import jwt_decode from "jwt-decode";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from '@stripe/react-stripe-js';
+import axios from "axios";
 
 // import Login from "./auth/LoginAdmin";
 import RegisterInstructor from "./auth/RegisterInstructor";
@@ -66,6 +67,7 @@ import Payment from "./components/payment/Payment";
 import LoginAdmin from "./auth/LoginAdmin";
 import LoginInstructor from "./auth/LoginInstructor";
 import LoginStudent from "./auth/LoginStudent";
+import ResetPasswordToken from "./auth/ResetPasswordToken";
 
 //check for token to avoid state destroy on reload
 if (localStorage.jwtToken) {
@@ -91,6 +93,26 @@ if (localStorage.jwtToken) {
 const stripePromise = loadStripe("pk_test_51L2DnCDu7chjgqDrDYFLDrpKGjVrSdlpvJWzNeuntWx6KfA9bqL4sd1XCwOLflqtQBEQae6Z6TAkaFERcOXy4dqy00tMGsgyBJ");
 
 class Root extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: null,
+    };
+  }
+
+  componentDidMount() {
+    this.getUser();
+  }
+
+  getUser = async () => {
+    try {
+      const url = `http://localhost:5000/login/success`;
+      const { data } = await axios.get(url, { withCredentials: true });
+      this.setState({ user: data.user._json });
+    } catch (err) {
+      console.log(err);
+    }
+  };
   render() {
     return (
       <Provider store={store}>
@@ -230,6 +252,11 @@ class Root extends Component {
               exact
               path={`${process.env.PUBLIC_URL}/forgot-password`}
               component={Forgot}
+            />
+            <Route
+              exact
+              path={`${process.env.PUBLIC_URL}/reset-password/:resetToken`}
+              component={ResetPasswordToken}
             />
             <Route
               exact

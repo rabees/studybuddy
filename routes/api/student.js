@@ -8,11 +8,41 @@ const keys = require("../../config/keys");
 const Student = require("../../models/Student");
 const Payment = require("../../models/Payment");
 const passport = require("passport");
+const nodemailer = require("nodemailer");
 const stripe = require('stripe')('sk_test_51L2DnCDu7chjgqDrURqah25bZe30yxmbbbaheNn6MCsn06rJSK6l3PX6nBJbPNH2FH6Dm5yhbot0WzP9xGlOKgXp00ebfYc03f');
 
 //Load input  validation
 const validateStudentRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
+
+router.get("/login/success", (req, res) => {
+	if (req.user) {
+		res.status(200).json({
+			error: false,
+			message: "Successfully Loged In",
+			user: req.user,
+		});
+	} else {
+		res.status(403).json({ error: true, message: "Not Authorized" });
+	}
+});
+
+router.get("/login/failed", (req, res) => {
+	res.status(401).json({
+		error: true,
+		message: "Log in failure",
+	});
+});
+
+router.get("/google", passport.authenticate("google", ["profile", "email"]));
+
+router.get(
+	"/google/callback",
+	passport.authenticate("google", {
+		successRedirect: "http://localhost:3000/",
+		failureRedirect: "/login/failed",
+	})
+);
 
 // @route  GET   api/students/register
 // @desc   Register students route
@@ -254,5 +284,66 @@ router.post('/payment', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
+const crypto = require("crypto");
+
+router.post("/reset-password", async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    // Find the user in the database based on the provided email
+    const user = await Student.findOne({ email });
+
+    if (!user) {
+      // User with the provided email does not exist
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    // Generate a password reset token
+    const resetToken = crypto.randomBytes(20).toString("hex");
+
+    // Set the generated reset token and its expiration time for the user
+    user.resetPasswordToken = resetToken;
+    user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+
+    // Save the updated user data
+    await user.save();
+
+    // Create a Nodemailer transporter using SMTP
+    const transporter = nodemailer.createTransport({
+      host: "sandbox.smtp.mailtrap.io",
+      port: 2525,
+      secureConnection: false,
+      auth: {
+        user: "f32c204a5e9f7d",
+        pass: "36953bf774b603"
+      },
+      tls: {
+          ciphers:'SSLv3'
+      }
+    });
+
+    // Create the email message
+    const mailOptions = {
+      from: "rabees517@gmail.com",
+      to: user.email,
+      subject: "Password Reset",
+      text: `You are receiving this email because you (or someone else) have requested the reset of the password for your account.\n\n`
+        + `Please click on the following link, or paste it into your browser to complete the process:\n\n`
+        + `/reset/${resetToken}\n\n`
+        + `If you did not request this, please ignore this email and your password will remain unchanged.\n`,
+    };
+
+    // Send the email
+    await transporter.sendMail(mailOptions);
+
+    // Return a success response
+    res.json({ message: "Password reset token generated and emailed to the user" });
+  } catch (error) {
+    console.error("Error generating password reset token:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 
 module.exports = router;

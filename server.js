@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
+const cookieSession = require("cookie-session");
 // const users = require("./routes/api/users");
 const group = require("./routes/api/group");
 const category = require("./routes/api/category");
@@ -25,6 +26,14 @@ const db = require("./config/keys").mongoURI;
 
 //Passport middileware
 passport.use(passport.initialize());
+
+app.use(
+	cookieSession({
+		name: "session",
+		keys: ["studybuddy"],
+		maxAge: 24 * 60 * 60 * 100,
+	})
+);
 
 //passport config
 require("./config/passport")(passport);

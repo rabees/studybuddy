@@ -4,9 +4,26 @@ import { Link } from 'react-router-dom';
 import isEmpty from '../../validation/is-empty';
 
 class ProfileItem extends Component {
+  generateRating = () => {
+    // Generate a random rating between 3.5 and 5
+    return (Math.random() * (5 - 3.5) + 3.5).toFixed(1);
+  }
   render() {
     const { profile } = this.props;
+    const rating = this.generateRating();
 
+    // Generate stars based on the rating
+    const stars = [];
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 !== 0;
+
+    for (let i = 0; i < fullStars; i++) {
+      stars.push(<i key={i} className="fa fa-star" />);
+    }
+
+    if (hasHalfStar) {
+      stars.push(<i key="half" className="fa fa-star-half" />);
+    }
     console.log("profile",profile)
 
     return (
@@ -46,6 +63,14 @@ class ProfileItem extends Component {
                 </li>
               ))}
             </ul>
+            <br />
+            <div className="col-md-4 d-none d-md-block">
+            <h4>Rating</h4>
+              <div className="stars">
+                {stars}
+              </div>
+              <p className="rating-text">{rating}/5</p>
+            </div>
           </div>
         </div>
       </div>

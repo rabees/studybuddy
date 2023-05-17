@@ -3,7 +3,6 @@ import "./style.css";
 import classnames from "classnames";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-// import GoogleLoginButton from 'react-google-login-button';
 import { loginAdmin } from "../actions/authActions";
 import NavBar from '../components/NavBar';
 
@@ -54,9 +53,6 @@ class LoginAdmin extends Component {
 
   render() {
     const { errors } = this.state;
-    // const responseGoogle = (response) => {
-    //   console.log(response);
-    // }
     return (
       <div>
         <NavBar/>
@@ -121,17 +117,6 @@ class LoginAdmin extends Component {
                         </div>
                       )}
                     </div>
-                    {/* <div className="saprator">
-                      <span>OR</span>
-                    </div> */}
-                    {/* <button className="btn btn-facebook mb-2 mr-2">
-                      <i className="fab fa-facebook-f" />
-                      facebook
-                    </button> */}
-      {/* //               <button className="btn btn-twitter mb-2 mr-2">
-      //                 <i className="fab fa-twitter" />
-      //                 Twitter
-      //               </button> */}
                          <div className="form-group text-left mt-2">
                          <div className="checkbox checkbox-fill d-inline">
                          <input
@@ -155,7 +140,7 @@ class LoginAdmin extends Component {
                       Login
                     </button>
                   </form>
-                  {/* <p className="mb-2 text-muted">
+                  <p className="mb-2 text-muted">
                     Forgot password?{" "}
                     <a
                       href={`${process.env.PUBLIC_URL}/forgot-password`}
@@ -163,7 +148,7 @@ class LoginAdmin extends Component {
                     >
                       Reset
                     </a>
-                  </p> */}
+                  </p>
                   <p className="mb-0 text-muted">
                     Don’t have an account?{" "}
                     <a
