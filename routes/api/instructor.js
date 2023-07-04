@@ -52,7 +52,6 @@ router.post("/instructors/register", (req, res) => {
         password: req.body.password,
         password2: req.body.password2,
         role: req.body.role,
-        city: req.body.city,
         rating: 0
       });
 
